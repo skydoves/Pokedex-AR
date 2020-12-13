@@ -22,10 +22,10 @@ plugins {
 
 apply from: '../dependencies.gradle'
 
-sceneform.asset('sampledata/Garden.obj',
-    'default',
-    'sampledata/garden/garden.sfa',
-    'sampledata/garden/garden')
+//sceneform.asset('sampledata/Garden.obj',
+//    'default',
+//    'sampledata/garden/garden.sfa',
+//    'sampledata/garden/garden')
 
 android {
     compileSdkVersion versions.compileSdk
