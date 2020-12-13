@@ -1,0 +1,32 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
+
+    // ar-core and scene-form
+    api "com.google.ar:core:$versions.arCoreVersion"
+    api "com.google.ar.sceneform.ux:sceneform-ux:$versions.sceneFormVersion"
+    api "com.google.ar.sceneform:core:$versions.sceneFormVersion"
+}
+
+apply from: '../spotless.gradle'

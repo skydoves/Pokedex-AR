@@ -1,0 +1,3 @@
+include ':pokedexar-core'
+include ':app'
+rootProject.name = "PokedexAR"

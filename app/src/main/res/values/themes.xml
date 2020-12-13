@@ -1,0 +1,43 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <style name="Theme.PokedexAR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryVariant">@color/colorPrimary</item>
+    <item name="colorOnPrimary">@color/colorPrimary</item>
+    <item name="colorOnBackground">@color/white_87</item>
+    <item name="android:textColorPrimary">@color/black_70</item>
+    <item name="colorControlHighlight">@color/colorPrimary</item>
+    <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
+  </style>
+
+  <style name="Theme.PokedexAR.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryVariant">@color/colorPrimary</item>
+    <item name="colorOnPrimary">@color/colorPrimary</item>
+    <item name="colorOnBackground">@color/white_87</item>
+    <item name="android:textColorPrimary">@color/black_70</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
+  <style name="TextStyle" parent="@android:style/Widget.TextView">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:gravity">center</item>
+    <item name="android:padding">10dp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
+  <style name="CircleImageStyle" parent="">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">50%</item>
+  </style>
+
+  <style name="ShapeAppearanceOverlay.CardView" parent="">
+    <item name="cornerFamilyBottomLeft">rounded</item>
+    <item name="cornerFamilyBottomRight">rounded</item>
+    <item name="cornerSizeBottomLeft">20%</item>
+    <item name="cornerSizeBottomRight">20%</item>
+  </style>
+</resources>
