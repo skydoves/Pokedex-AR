@@ -17,9 +17,13 @@
 package com.skydoves.pokedexar.repository
 
 import androidx.annotation.WorkerThread
+import com.skydoves.pokedexar.mapper.ErrorResponseMapper
+import com.skydoves.pokedexar.model.PokemonErrorResponse
 import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.network.PokedexClient
 import com.skydoves.pokedexar.persistence.PokemonInfoDao
+import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.map
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
@@ -39,10 +43,14 @@ class DetailRepository @Inject constructor(
   suspend fun fetchPokemonInfo(
     name: String,
     onSuccess: () -> Unit,
-    onError: (String) -> Unit
+    onError: (String?) -> Unit
   ) = flow<PokemonInfo?> {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
     if (pokemonInfo == null) {
+      /**
+       * fetch [PokemonInfo] from the network and getting [ApiResponse] asynchronously.
+       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#suspendonsuccess-suspendonerror-suspendonexception)
+       * */
       val response = pokedexClient.fetchPokemonInfo(name = name)
       response.suspendOnSuccess {
         data.whatIfNotNull { response ->
@@ -54,7 +62,10 @@ class DetailRepository @Inject constructor(
         // handle the case when the API request gets an error response.
         // e.g. internal server error.
         .onError {
-          onError(message())
+          /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
+          map(ErrorResponseMapper) {
+            onError(message)
+          }
         }
         // handle the case when the API request gets an exception response.
         // e.g. network connection error.

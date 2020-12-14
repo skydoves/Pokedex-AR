@@ -38,7 +38,6 @@ data class PokemonInfo(
   val exp: Int = Random.nextInt(maxExp)
 ) {
 
-  fun getIdString(): String = String.format("#%03d", id)
   fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
   fun getHeightString(): String = String.format("%.1f M", height.toFloat() / 10)
   fun getHpString(): String = "$hp/$maxHp"
