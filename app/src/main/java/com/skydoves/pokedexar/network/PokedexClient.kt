@@ -16,6 +16,8 @@
 
 package com.skydoves.pokedexar.network
 
+import com.skydoves.pokedexar.model.PokemonInfo
+import com.skydoves.sandwich.ApiResponse
 import javax.inject.Inject
 
 class PokedexClient @Inject constructor(
@@ -24,7 +26,8 @@ class PokedexClient @Inject constructor(
 
   suspend fun fetchPokemonInfo(
     name: String
-  ) = pokedexService.fetchPokemonInfo(
-    name = name
-  )
+  ): ApiResponse<PokemonInfo> =
+    pokedexService.fetchPokemonInfo(
+      name = name
+    )
 }
