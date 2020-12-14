@@ -18,6 +18,10 @@ package com.skydoves.pokedexar.repository
 
 import androidx.annotation.WorkerThread
 import com.skydoves.pokedexar.persistence.PokemonDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
@@ -25,5 +29,11 @@ class MainRepository @Inject constructor(
 ) : Repository {
 
   @WorkerThread
-  fun getPokemonList() = pokemonDao.getPokemonList()
+  fun getPokemonList(
+    onSuccess: () -> Unit,
+    onError: (String?) -> Unit
+  ) = pokemonDao.getPokemonList()
+    .onStart { onSuccess() }
+    .catch { onError(it.localizedMessage) }
+    .flowOn(Dispatchers.IO)
 }

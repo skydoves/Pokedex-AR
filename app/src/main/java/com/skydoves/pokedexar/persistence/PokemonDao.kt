@@ -16,12 +16,12 @@
 
 package com.skydoves.pokedexar.persistence
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.skydoves.pokedexar.model.Pokemon
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
@@ -33,5 +33,5 @@ interface PokemonDao {
   suspend fun getPokemon(id_: Int): Pokemon?
 
   @Query("SELECT * FROM Pokemon WHERE hits > 0")
-  fun getPokemonList(): LiveData<List<Pokemon>>
+  fun getPokemonList(): Flow<List<Pokemon>>
 }
