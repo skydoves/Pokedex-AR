@@ -16,10 +16,7 @@
 
 package com.skydoves.pokedexar.extensions
 
-import android.os.Build
 import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.WindowManager
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -27,13 +24,8 @@ import androidx.fragment.app.Fragment
 
 @Suppress("DEPRECATION")
 fun AppCompatActivity.applyFullScreenWindow() {
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    val controller: WindowInsetsController? = window.insetsController
-    controller?.hide(WindowInsets.Type.statusBars())
-  } else {
-    requestWindowFeature(Window.FEATURE_NO_TITLE)
-    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-  }
+  requestWindowFeature(Window.FEATURE_NO_TITLE)
+  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 }
 
 @Suppress("UNCHECKED_CAST")
