@@ -24,7 +24,6 @@ import com.skydoves.pokedexar.network.PokedexClient
 import com.skydoves.pokedexar.persistence.PokemonInfoDao
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.map
-import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
@@ -63,15 +62,11 @@ class DetailRepository @Inject constructor(
         // e.g. internal server error.
         .onError {
           /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
-          map(ErrorResponseMapper) {
-            onError(message)
-          }
+          map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
         }
         // handle the case when the API request gets an exception response.
         // e.g. network connection error.
-        .onException {
-          onError(message())
-        }
+        .onException { onError(message) }
     } else {
       emit(pokemonInfo)
       onSuccess()
