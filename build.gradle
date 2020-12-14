@@ -13,9 +13,6 @@
 //limitations under the License.
 buildscript {
     apply from: './dependencies.gradle'
-    ext {
-        kotlin_version = '1.4.20'
-    }
     repositories {
         google()
         jcenter()
