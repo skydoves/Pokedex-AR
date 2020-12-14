@@ -17,6 +17,7 @@
   <string name="app_name">PokedexAR</string>
   <string name="gotcha">Gotcha! 🎉</string>
   <string name="placeholder_empty_pokemon">There is no pokemon that has been caught.</string>
+  <string name="pokemon_name">%s (%s)</string>
   <string name="weight">Weight</string>
   <string name="height">Height</string>
   <string name="base_stats">Base Stats</string>
