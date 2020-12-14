@@ -20,12 +20,10 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -43,9 +41,6 @@ import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.utils.PokemonUtils
 import com.skydoves.pokedexar.utils.SpacesItemDecoration
 import com.skydoves.progressview.ProgressView
-import com.skydoves.rainbow.Rainbow
-import com.skydoves.rainbow.RainbowOrientation
-import com.skydoves.rainbow.color
 import com.skydoves.whatif.whatIfNotNull
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
@@ -70,38 +65,6 @@ object ViewBinding {
             val rgb = palette?.dominantSwatch?.rgb
             if (rgb != null) {
               paletteCard.setCardBackgroundColor(rgb)
-            }
-          }.crossfade(true)
-      ).into(view)
-  }
-
-  @JvmStatic
-  @BindingAdapter("paletteImage", "paletteView")
-  fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView: View) {
-    val context = view.context
-    Glide.with(context)
-      .load(url)
-      .listener(
-        GlidePalette.with(url)
-          .use(BitmapPalette.Profile.MUTED_LIGHT)
-          .intoCallBack { palette ->
-            val light = palette?.lightVibrantSwatch?.rgb
-            val domain = palette?.dominantSwatch?.rgb
-            if (domain != null) {
-              if (light != null) {
-                Rainbow(paletteView).palette {
-                  +color(domain)
-                  +color(light)
-                }.background(orientation = RainbowOrientation.TOP_BOTTOM)
-              } else {
-                paletteView.setBackgroundColor(domain)
-              }
-              if (context is AppCompatActivity) {
-                context.window.apply {
-                  addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                  statusBarColor = domain
-                }
-              }
             }
           }.crossfade(true)
       ).into(view)

@@ -13,7 +13,7 @@ Pokedex-AR is a small demo application based on AR, modern Android application t
 </br>
 
 <p align="center">
-<img src="/previews/screenshot.jpg"/>
+<img src="/previews/screenshot.png"/>
 </p>
 
 ## Download
