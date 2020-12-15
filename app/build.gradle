@@ -20,12 +20,7 @@ plugins {
     id 'com.google.ar.sceneform.plugin'
 }
 
-apply from: '../dependencies.gradle'
-
-//sceneform.asset('sampledata/Garden.obj',
-//    'default',
-//    'sampledata/garden/garden.sfa',
-//    'sampledata/garden/garden')
+apply from: "$rootDir/dependencies.gradle"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -158,4 +153,9 @@ dependencies {
     implementation project(":pokedexar-core")
 }
 
-apply from: '../spotless.gradle'
+//sceneform.asset('sampledata/Garden.obj',
+//    'default',
+//    'sampledata/garden/garden.sfa',
+//    'sampledata/garden/garden')
+
+apply from: "$rootDir/spotless.gradle"

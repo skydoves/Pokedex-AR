@@ -16,6 +16,8 @@ plugins {
     id 'kotlin-android'
 }
 
+apply from: "$rootDir/dependencies.gradle"
+
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
@@ -42,4 +44,4 @@ dependencies {
     api "com.google.ar.sceneform:core:$versions.sceneFormVersion"
 }
 
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless.gradle"

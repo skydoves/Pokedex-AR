@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 buildscript {
-    apply from: './dependencies.gradle'
+    apply from: "$rootDir/dependencies.gradle"
     repositories {
         google()
         jcenter()
