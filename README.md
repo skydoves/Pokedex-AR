@@ -50,6 +50,10 @@ Go to the [Releases](https://github.com/skydoves/Pokedex-AR/releases) to downloa
   - [AndroidRibbon](https://github.com/skydoves/androidribbon) - A simple way to implement a  beautiful ribbon with the shimmering on Android.
   - [ProgressView](https://github.com/skydoves/progressview) - A polished and flexible ProgressView, fully customizable with animations.
 
+## MAD Score
+![summary](https://user-images.githubusercontent.com/24237865/102298434-77a5db00-3f94-11eb-9ae5-5fc72aa60533.png)
+![kotlin](https://user-images.githubusercontent.com/24237865/102298432-7674ae00-3f94-11eb-8b9b-b3b9f4ff4c22.png)
+
 ## Architecture
 Pokedex-AR is based on MVVM architecture and a repository pattern.
 
