@@ -72,7 +72,7 @@ ext.versions = [
     bundlerVersion       : '1.0.3',
 
     // balloon
-    balloonVersion       : '1.2.8',
+    balloonVersion       : '1.2.9',
 
     // android ribbon
     androidRibbonVersion : '1.0.3',

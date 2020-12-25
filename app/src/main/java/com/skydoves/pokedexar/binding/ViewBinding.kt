@@ -34,6 +34,7 @@ import com.skydoves.androidribbon.RibbonRecyclerView
 import com.skydoves.androidribbon.ribbonView
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.BalloonSizeSpec
 import com.skydoves.balloon.overlay.BalloonOverlayRoundRect
 import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.model.Pokemon
@@ -89,6 +90,7 @@ object ViewBinding {
         Balloon.Builder(context)
           .setLayout(R.layout.layout_custom_balloon)
           .setWidthRatio(0.85f)
+          .setHeight(BalloonSizeSpec.WRAP)
           .setIsVisibleArrow(false)
           .setPadding(12)
           .setMarginRight(12)
