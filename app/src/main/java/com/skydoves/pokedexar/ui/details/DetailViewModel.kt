@@ -18,7 +18,6 @@ package com.skydoves.pokedexar.ui.details
 
 import androidx.annotation.MainThread
 import androidx.databinding.ObservableBoolean
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -26,9 +25,12 @@ import androidx.lifecycle.switchMap
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.repository.DetailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
-class DetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
   private val detailRepository: DetailRepository,
 ) : LiveCoroutinesViewModel() {
 

@@ -16,16 +16,18 @@
 
 package com.skydoves.pokedexar.ui.main
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
   mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
