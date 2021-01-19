@@ -23,7 +23,6 @@ import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.network.PokedexClient
 import com.skydoves.pokedexar.persistence.PokemonInfoDao
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.map
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
@@ -39,7 +38,7 @@ class DetailRepository @Inject constructor(
 ) : Repository {
 
   @WorkerThread
-  suspend fun fetchPokemonInfo(
+  fun fetchPokemonInfo(
     name: String,
     onSuccess: () -> Unit,
     onError: (String?) -> Unit
@@ -60,9 +59,9 @@ class DetailRepository @Inject constructor(
       }
         // handle the case when the API request gets an error response.
         // e.g. internal server error.
-        .onError {
+        .onError(ErrorResponseMapper) {
           /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
-          map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
+          onError("[Code: $code]: $message")
         }
         // handle the case when the API request gets an exception response.
         // e.g. network connection error.
