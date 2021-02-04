@@ -16,6 +16,7 @@ buildscript {
     apply from: "$rootDir/dependencies.gradle"
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -30,6 +31,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
 }
