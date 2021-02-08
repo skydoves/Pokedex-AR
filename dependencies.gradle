@@ -20,7 +20,7 @@ ext.versions = [
 
     // gradle plugins
     gradleBuildTool      : '4.1.1',
-    spotlessGradle       : '5.8.2',
+    spotlessGradle       : '5.9.0',
 
     // kotlin
     kotlin               : '1.4.20',
@@ -30,7 +30,7 @@ ext.versions = [
     sceneFormVersion     : '1.17.1',
 
     // support library
-    materialVersion      : '1.2.0-alpha06',
+    materialVersion      : '1.3.0',
     constraintVersion    : '2.0.4',
 
     // architecture components
