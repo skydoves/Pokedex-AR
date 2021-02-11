@@ -65,7 +65,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appBarLayout"
       app:spanCount="2"
-      app:toast="@{vm.toastLiveData}"
+      app:toast="@{vm.errorMessage}"
       tools:listitem="@layout/item_pokemon" />
 
     <TextView
@@ -88,7 +88,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:indeterminateTint="@color/colorPrimary"
-      app:gone="@{!vm.isLoadingLiveData}"
+      app:gone="@{!vm.loading}"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

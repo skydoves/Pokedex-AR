@@ -23,9 +23,9 @@ import com.google.ar.core.Pose
 import com.google.ar.core.Session
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.ux.ArFragment
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedexar.R
-import com.skydoves.pokedexar.base.DataBindingActivity
 import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
 import com.skydoves.pokedexar.extensions.findFragmentAs
@@ -35,10 +35,9 @@ import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SceneActivity : DataBindingActivity() {
+class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_scene) {
 
   private val viewModel by viewModels<SceneViewModel>()
-  private val binding by binding<ActivitySceneBinding>(R.layout.activity_scene)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     applyFullScreenWindow()
@@ -69,7 +68,7 @@ class SceneActivity : DataBindingActivity() {
   }
 
   private fun initializeModels(arFragment: ArFragment, session: Session) {
-    if (session.allAnchors.isEmpty() && !viewModel.isCaught.get()) {
+    if (session.allAnchors.isEmpty() && !viewModel.isCaught) {
       val pose = Pose(floatArrayOf(0f, 0f, -1f), floatArrayOf(0f, 0f, 0f, 1f))
       session.createAnchor(pose).apply {
         val pokemon = PokemonModels.getRandomPokemon()

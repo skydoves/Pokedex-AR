@@ -24,10 +24,10 @@ import com.google.ar.core.Pose
 import com.google.ar.core.Session
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.ux.ArFragment
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedexar.R
-import com.skydoves.pokedexar.base.DataBindingActivity
 import com.skydoves.pokedexar.databinding.ActivityDetailBinding
 import com.skydoves.pokedexar.extensions.findFragmentAs
 import com.skydoves.pokedexar.model.Pokemon
@@ -38,16 +38,15 @@ import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailActivity : DataBindingActivity() {
+class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
   private val viewModel: DetailViewModel by viewModels()
-  private val binding: ActivityDetailBinding by binding(R.layout.activity_detail)
   private val pokemon: Pokemon by bundleNonNull("EXTRA_POKEMON")
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    with(binding) {
+    binding {
       lifecycleOwner = this@DetailActivity
       pokemon = this@DetailActivity.pokemon
       vm = viewModel.apply {

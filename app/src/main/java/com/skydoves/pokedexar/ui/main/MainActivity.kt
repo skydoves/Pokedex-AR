@@ -19,23 +19,22 @@ package com.skydoves.pokedexar.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.pokedexar.R
-import com.skydoves.pokedexar.base.DataBindingActivity
 import com.skydoves.pokedexar.databinding.ActivityMainBinding
 import com.skydoves.pokedexar.ui.adapter.PokemonAdapter
 import com.skydoves.pokedexar.ui.scene.SceneActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : DataBindingActivity() {
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
   @VisibleForTesting
   val viewModel: MainViewModel by viewModels()
-  private val binding: ActivityMainBinding by binding(R.layout.activity_main)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    with(binding) {
+    binding {
       lifecycleOwner = this@MainActivity
       adapter = PokemonAdapter()
       vm = viewModel

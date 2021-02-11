@@ -47,7 +47,7 @@
       app:bindShowingBalloon="@{vm.pokemonListLiveData}"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:toast="@{vm.toastLiveData}" />
+      app:toast="@{vm.errorMessage}" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

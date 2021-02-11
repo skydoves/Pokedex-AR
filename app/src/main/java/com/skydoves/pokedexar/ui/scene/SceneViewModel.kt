@@ -17,11 +17,12 @@
 package com.skydoves.pokedexar.ui.scene
 
 import androidx.annotation.MainThread
-import androidx.databinding.ObservableBoolean
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.repository.SceneRepository
@@ -38,20 +39,22 @@ class SceneViewModel @Inject constructor(
   private val pokemonFetchingModel: MutableLiveData<RenderingModel> = MutableLiveData()
   val pokemonListLiveData: LiveData<Pokemon>
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var errorMessage: String? by bindingProperty(null)
+    private set
 
-  val isCaught: ObservableBoolean = ObservableBoolean(false)
+  var isCaught: Boolean = false
+    private set
 
   init {
     Timber.d("init SceneViewModel")
 
     pokemonListLiveData = pokemonFetchingModel.switchMap {
-      isCaught.set(true)
+      isCaught = true
       launchOnViewModelScope {
         this.sceneRepository.insertPokemon(
           pokemonModel = it,
-          onError = { _toastLiveData.postValue(it) }
+          onError = { errorMessage = it }
         ).asLiveData()
       }
     }

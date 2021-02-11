@@ -16,9 +16,10 @@
 
 package com.skydoves.pokedexar.ui.main
 
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.repository.MainRepository
@@ -33,18 +34,22 @@ class MainViewModel @Inject constructor(
 
   val pokemonListLiveData: LiveData<List<Pokemon>>
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var errorMessage: String? by bindingProperty(null)
+    private set
 
-  private val _isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData(true)
-  val isLoadingLiveData: LiveData<Boolean> get() = _isLoadingLiveData
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(true)
+    private set
 
   init {
     Timber.d("init MainViewModel")
 
-    pokemonListLiveData = mainRepository.getPokemonList(
-      onSuccess = { _isLoadingLiveData.postValue(false) },
-      onError = { _toastLiveData.value = it }
-    ).asLiveData()
+    pokemonListLiveData = launchOnViewModelScope {
+      mainRepository.getPokemonList(
+        onSuccess = { isLoading = false },
+        onError = { errorMessage = it }
+      ).asLiveData()
+    }
   }
 }

@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/arFragment"
-        app:toast="@{vm.toastLiveData}"
+        app:toast="@{vm.errorMessage}"
         tools:text="skydoves" />
 
       <com.skydoves.androidribbon.RibbonRecyclerView

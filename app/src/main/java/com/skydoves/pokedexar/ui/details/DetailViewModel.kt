@@ -17,11 +17,12 @@
 package com.skydoves.pokedexar.ui.details
 
 import androidx.annotation.MainThread
-import androidx.databinding.ObservableBoolean
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.repository.DetailRepository
@@ -37,21 +38,23 @@ class DetailViewModel @Inject constructor(
   private var pokemonFetchingLiveData: MutableLiveData<String> = MutableLiveData()
   val pokemonInfoLiveData: LiveData<PokemonInfo?>
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var errorMessage: String? by bindingProperty(null)
+    private set
 
-  val isLoading: ObservableBoolean = ObservableBoolean(false)
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(true)
+    private set
 
   init {
     Timber.d("init DetailViewModel")
 
     pokemonInfoLiveData = pokemonFetchingLiveData.switchMap {
-      isLoading.set(true)
       launchOnViewModelScope {
         this.detailRepository.fetchPokemonInfo(
           name = it,
-          onSuccess = { isLoading.set(false) },
-          onError = { _toastLiveData.postValue(it) }
+          onSuccess = { isLoading = false },
+          onError = { errorMessage = it }
         ).asLiveData()
       }
     }
