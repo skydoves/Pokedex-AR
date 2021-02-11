@@ -39,6 +39,9 @@ ext.versions = [
     roomVersion          : '2.3.0-alpha03',
     archCompomentVersion : '2.1.0',
 
+    // binding
+    bindablesVersion       : '1.0.0-SNAPSHOT',
+
     // startup
     startupVersion       : '1.0.0',
 
