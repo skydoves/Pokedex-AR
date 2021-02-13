@@ -20,16 +20,13 @@ import android.content.Context
 import androidx.startup.Initializer
 import com.skydoves.bindables.BindingManager
 import com.skydoves.pokedexar.BR
-import com.skydoves.pokedexar.BuildConfig
 import timber.log.Timber
 
 class BindingInitializer : Initializer<Unit> {
 
   override fun create(context: Context) {
-    if (BuildConfig.DEBUG) {
-      BindingManager.bind(BR::class)
-      Timber.d("BindingInitializer is initialized.")
-    }
+    BindingManager.bind(BR::class)
+    Timber.d("BindingInitializer is initialized.")
   }
 
   override fun dependencies(): List<Class<out Initializer<*>>> = listOf(TimberInitializer::class.java)
