@@ -68,7 +68,7 @@
       android:exported="false"
       tools:node="merge">
       <meta-data
-        android:name="com.skydoves.pokedexar.initializer.BindingInitializer"
+        android:name="com.skydoves.pokedexar.initializer.TimberInitializer"
         android:value="androidx.startup" />
     </provider>
   </application>
