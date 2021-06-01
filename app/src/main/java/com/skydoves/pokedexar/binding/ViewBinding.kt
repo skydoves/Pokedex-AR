@@ -98,7 +98,7 @@ object ViewBinding {
           .setCornerRadius(8f)
           .setTextColorResource(R.color.white_87)
           .setIconDrawableResource(R.mipmap.ic_launcher)
-          .setBackgroundColorResource(R.color.yellow)
+          .setBackgroundColorResource(R.color.background)
           .setBalloonAnimation(BalloonAnimation.ELASTIC)
           .setOverlayPadding(6f)
           .setOverlayShape(BalloonOverlayRoundRect(12f, 12f))

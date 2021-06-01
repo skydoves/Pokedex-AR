@@ -19,11 +19,11 @@ ext.versions = [
     versionName          : '1.0.0',
 
     // gradle plugins
-    gradleBuildTool      : '4.1.1',
-    spotlessGradle       : '5.9.0',
+    gradleBuildTool      : '4.1.3',
+    spotlessGradle       : '5.12.3',
 
     // kotlin
-    kotlin               : '1.4.20',
+    kotlin               : '1.4.32',
 
     // ar-core
     arCoreVersion        : '1.22.0',
@@ -40,26 +40,26 @@ ext.versions = [
     archCompomentVersion : '2.1.0',
 
     // binding
-    bindablesVersion       : '1.0.5',
+    bindablesVersion       : '1.0.6',
 
     // startup
     startupVersion       : '1.0.0',
 
     // di
-    hiltCoreVersion      : '2.32-alpha',
-    hiltVersion          : '1.0.0-alpha03',
+    hiltCoreVersion      : '2.36',
+    hiltVersion          : '1.0.0',
 
     // network
     retrofitVersion      : '2.9.0',
     okhttpVersion        : '4.7.2',
-    sandwichVersion      : '1.0.9',
+    sandwichVersion      : '1.1.0',
 
     // moshi
     moshiVersion         : '1.11.0',
     moshiConverterVersion: '2.7.2',
 
     // coroutines
-    coroutinesVersion    : '1.4.1',
+    coroutinesVersion    : '1.4.3',
 
     // glide
     glideVersion         : '4.12.0',
@@ -69,13 +69,13 @@ ext.versions = [
     recyclerView         : '1.2.0-alpha06',
 
     // whatIf
-    whatIfVersion        : '1.0.9',
+    whatIfVersion        : '1.1.0',
 
     // bundler
-    bundlerVersion       : '1.0.3',
+    bundlerVersion       : '1.0.4',
 
     // balloon
-    balloonVersion       : '1.3.3',
+    balloonVersion       : '1.3.4',
 
     // android ribbon
     androidRibbonVersion : '1.0.3',
@@ -84,7 +84,7 @@ ext.versions = [
     progressViewVersion  : '1.1.0',
 
     // rainbow
-    rainbowVersion       : '1.0.3',
+    rainbowVersion       : '1.0.4',
 
     // debugging
     timberVersion        : '4.7.1',
