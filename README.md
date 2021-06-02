@@ -27,15 +27,14 @@ Go to the [Releases](https://github.com/skydoves/Pokedex-AR/releases) to downloa
 - [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - [ARCore](https://github.com/google-ar/arcore-android-sdk) - ARCore SDK for Android.
 - [SceneForm](https://github.com/google-ar/sceneform-android-sdk) - Sceneform SDK for Android.
-- Hilt (alpha) for dependency injection.
+- Hilt for dependency injection.
 - JetPack
-  - LiveData - notify domain layer data to views.
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
   - Room Persistence - construct a database using the abstract layer.
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
-  - Repository pattern
+  - Repository pattern.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
 - [Moshi](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
