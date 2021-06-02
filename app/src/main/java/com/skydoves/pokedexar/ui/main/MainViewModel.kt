@@ -17,8 +17,8 @@
 package com.skydoves.pokedexar.ui.main
 
 import androidx.databinding.Bindable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
@@ -32,7 +32,13 @@ class MainViewModel @Inject constructor(
   mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
-  val pokemonListLiveData: LiveData<List<Pokemon>>
+  private val pokemonListFlow = mainRepository.getPokemonList(
+    onSuccess = { isLoading = false },
+    onError = { errorMessage = it }
+  )
+
+  @get:Bindable
+  val pokemonList: List<Pokemon>? by pokemonListFlow.asBindingProperty(viewModelScope, null)
 
   @get:Bindable
   var errorMessage: String? by bindingProperty(null)
@@ -44,12 +50,5 @@ class MainViewModel @Inject constructor(
 
   init {
     Timber.d("init MainViewModel")
-
-    pokemonListLiveData = launchOnViewModelScope {
-      mainRepository.getPokemonList(
-        onSuccess = { isLoading = false },
-        onError = { errorMessage = it }
-      ).asLiveData()
-    }
   }
 }

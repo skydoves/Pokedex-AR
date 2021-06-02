@@ -16,27 +16,32 @@
 
 package com.skydoves.pokedexar.ui.details
 
-import androidx.annotation.MainThread
 import androidx.databinding.Bindable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.repository.DetailRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-class DetailViewModel @Inject constructor(
-  private val detailRepository: DetailRepository,
+class DetailViewModel @AssistedInject constructor(
+  detailRepository: DetailRepository,
+  @Assisted private val pokemonName: String
 ) : LiveCoroutinesViewModel() {
 
-  private var pokemonFetchingLiveData: MutableLiveData<String> = MutableLiveData()
-  val pokemonInfoLiveData: LiveData<PokemonInfo?>
+  private val pokemonInfoFlow = detailRepository.fetchPokemonInfo(
+    name = pokemonName,
+    onSuccess = { isLoading = false },
+    onError = { errorMessage = it }
+  )
+
+  @get:Bindable
+  val pokemonInfo: PokemonInfo? by pokemonInfoFlow.asBindingProperty(viewModelScope, null)
 
   @get:Bindable
   var errorMessage: String? by bindingProperty(null)
@@ -48,20 +53,22 @@ class DetailViewModel @Inject constructor(
 
   init {
     Timber.d("init DetailViewModel")
-
-    pokemonInfoLiveData = pokemonFetchingLiveData.switchMap {
-      launchOnViewModelScope {
-        this.detailRepository.fetchPokemonInfo(
-          name = it,
-          onSuccess = { isLoading = false },
-          onError = { errorMessage = it }
-        ).asLiveData()
-      }
-    }
   }
 
-  @MainThread
-  fun fetchPokemonInfo(name: String) {
-    pokemonFetchingLiveData.value = name
+  @dagger.assisted.AssistedFactory
+  interface AssistedFactory {
+    fun create(pokemonName: String): DetailViewModel
+  }
+
+  companion object {
+    fun provideFactory(
+      assistedFactory: AssistedFactory,
+      pokemonName: String
+    ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+      @Suppress("UNCHECKED_CAST")
+      override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return assistedFactory.create(pokemonName) as T
+      }
+    }
   }
 }
