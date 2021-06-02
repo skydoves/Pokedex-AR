@@ -36,7 +36,7 @@ class DetailViewModel @AssistedInject constructor(
 
   private val pokemonInfoFlow = detailRepository.fetchPokemonInfo(
     name = pokemonName,
-    onSuccess = { isLoading = false },
+    onComplete = { isLoading = false },
     onError = { errorMessage = it }
   )
 

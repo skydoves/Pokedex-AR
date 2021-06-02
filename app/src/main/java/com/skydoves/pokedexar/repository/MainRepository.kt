@@ -30,10 +30,10 @@ class MainRepository @Inject constructor(
 
   @WorkerThread
   fun getPokemonList(
-    onSuccess: () -> Unit,
+    onStart: () -> Unit,
     onError: (String?) -> Unit
   ) = pokemonDao.getPokemonList()
-    .onStart { onSuccess() }
+    .onStart { onStart() }
     .catch { onError(it.localizedMessage) }
     .flowOn(Dispatchers.IO)
 }

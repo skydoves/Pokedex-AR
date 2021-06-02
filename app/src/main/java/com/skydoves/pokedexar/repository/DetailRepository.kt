@@ -30,6 +30,7 @@ import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import javax.inject.Inject
 
 class DetailRepository @Inject constructor(
@@ -40,7 +41,7 @@ class DetailRepository @Inject constructor(
   @WorkerThread
   fun fetchPokemonInfo(
     name: String,
-    onSuccess: () -> Unit,
+    onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow<PokemonInfo?> {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
@@ -54,7 +55,6 @@ class DetailRepository @Inject constructor(
         data.whatIfNotNull { response ->
           pokemonInfoDao.insertPokemonInfo(response)
           emit(response)
-          onSuccess()
         }
       }
         // handle the case when the API request gets an error response.
@@ -68,7 +68,6 @@ class DetailRepository @Inject constructor(
         .onException { onError(message) }
     } else {
       emit(pokemonInfo)
-      onSuccess()
     }
-  }.flowOn(Dispatchers.IO)
+  }.onCompletion { onComplete() }.flowOn(Dispatchers.IO)
 }

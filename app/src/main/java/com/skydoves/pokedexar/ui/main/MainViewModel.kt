@@ -33,7 +33,7 @@ class MainViewModel @Inject constructor(
 ) : LiveCoroutinesViewModel() {
 
   private val pokemonListFlow = mainRepository.getPokemonList(
-    onSuccess = { isLoading = false },
+    onStart = { isLoading = false },
     onError = { errorMessage = it }
   )
 
