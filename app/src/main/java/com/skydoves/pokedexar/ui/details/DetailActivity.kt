@@ -36,11 +36,19 @@ import com.skydoves.pokedexar_core.PokemonModels
 import com.skydoves.pokedexar_core.PokemonModels.DEFAULT_POSITION_DETAILS_POKEMON
 import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
-  private val viewModel: DetailViewModel by viewModels()
+  @Inject
+  lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
+
+  @VisibleForTesting
+  val viewModel: DetailViewModel by viewModels {
+    DetailViewModel.provideFactory(detailViewModelFactory, pokemon.name)
+  }
+
   private val pokemon: Pokemon by bundleNonNull("EXTRA_POKEMON")
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +57,7 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
     binding {
       lifecycleOwner = this@DetailActivity
       pokemon = this@DetailActivity.pokemon
-      vm = viewModel.apply {
-        fetchPokemonInfo(this@DetailActivity.pokemon.name)
-      }
+      vm = viewModel
     }
 
     with(findFragmentAs<ArFragment>(R.id.arFragment)) {
