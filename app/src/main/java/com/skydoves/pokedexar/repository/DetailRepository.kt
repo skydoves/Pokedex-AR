@@ -26,7 +26,6 @@ import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
-import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -52,10 +51,8 @@ class DetailRepository @Inject constructor(
        * */
       val response = pokedexClient.fetchPokemonInfo(name = name)
       response.suspendOnSuccess {
-        data.whatIfNotNull { response ->
-          pokemonInfoDao.insertPokemonInfo(response)
-          emit(response)
-        }
+        pokemonInfoDao.insertPokemonInfo(data)
+        emit(data)
       }
         // handle the case when the API request gets an error response.
         // e.g. internal server error.
