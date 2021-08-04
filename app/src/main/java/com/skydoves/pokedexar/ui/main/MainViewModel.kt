@@ -32,14 +32,6 @@ class MainViewModel @Inject constructor(
   mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
-  private val pokemonListFlow = mainRepository.getPokemonList(
-    onStart = { isLoading = false },
-    onError = { errorMessage = it }
-  )
-
-  @get:Bindable
-  val pokemonList: List<Pokemon>? by pokemonListFlow.asBindingProperty(viewModelScope, null)
-
   @get:Bindable
   var errorMessage: String? by bindingProperty(null)
     private set
@@ -47,6 +39,14 @@ class MainViewModel @Inject constructor(
   @get:Bindable
   var isLoading: Boolean by bindingProperty(true)
     private set
+
+  private val pokemonListFlow = mainRepository.getPokemonList(
+    onStart = { isLoading = false },
+    onError = { errorMessage = it }
+  )
+
+  @get:Bindable
+  val pokemonList: List<Pokemon>? by pokemonListFlow.asBindingProperty(viewModelScope, null)
 
   init {
     Timber.d("init MainViewModel")
