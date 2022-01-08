@@ -18,9 +18,9 @@ package com.skydoves.pokedexar.ui.main
 
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +30,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
   mainRepository: MainRepository
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
   @get:Bindable
   var errorMessage: String? by bindingProperty(null)

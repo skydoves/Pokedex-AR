@@ -45,11 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         dataBinding true
@@ -83,12 +83,9 @@ android {
 dependencies {
     // android supports
     implementation "com.google.android.material:material:$versions.materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
 
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
     implementation "androidx.room:room-runtime:$versions.roomVersion"
@@ -128,10 +125,6 @@ dependencies {
     // glide
     implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
     implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
-    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
-
-    // recyclerView
-    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
 
     // whatIf
     implementation "com.github.skydoves:whatif:$versions.whatIfVersion"

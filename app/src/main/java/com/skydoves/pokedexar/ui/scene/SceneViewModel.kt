@@ -18,26 +18,36 @@ package com.skydoves.pokedexar.ui.scene
 
 import androidx.annotation.MainThread
 import androidx.databinding.Bindable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
+import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.repository.SceneRepository
 import com.skydoves.pokedexar_core.RenderingModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class SceneViewModel @Inject constructor(
   private val sceneRepository: SceneRepository
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
-  private val pokemonFetchingModel: MutableLiveData<RenderingModel> = MutableLiveData()
-  val pokemonListLiveData: LiveData<Pokemon>
+  private val pokemonFetchingModel: MutableStateFlow<RenderingModel?> = MutableStateFlow(null)
+
+  private val pokemonListFlow = pokemonFetchingModel.filterNotNull().flatMapLatest { model ->
+    sceneRepository.insertPokemon(
+      pokemonModel = model,
+      onError = { errorMessage = it }
+    )
+  }
+
+  @get:Bindable
+  val pokemon: Pokemon? by pokemonListFlow.asBindingProperty(viewModelScope, null)
 
   @get:Bindable
   var errorMessage: String? by bindingProperty(null)
@@ -48,20 +58,9 @@ class SceneViewModel @Inject constructor(
 
   init {
     Timber.d("init SceneViewModel")
-
-    pokemonListLiveData = pokemonFetchingModel.switchMap {
-      isCaught = true
-      launchOnViewModelScope {
-        this.sceneRepository.insertPokemon(
-          pokemonModel = it,
-          onError = { errorMessage = it }
-        ).asLiveData()
-      }
-    }
   }
 
   @MainThread
-  fun insertPokemonModel(renderingModel: RenderingModel) {
-    pokemonFetchingModel.value = renderingModel
-  }
+  fun insertPokemonModel(renderingModel: RenderingModel) =
+    pokemonFetchingModel.tryEmit(renderingModel)
 }

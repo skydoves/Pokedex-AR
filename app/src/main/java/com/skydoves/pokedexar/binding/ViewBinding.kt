@@ -114,7 +114,7 @@ object ViewBinding {
               .into(image)
             val name = getContentView().findViewById<TextView>(R.id.name)
             name.text = it.name
-            show(view.rootView)
+            showAtCenter(view.rootView)
           }
       }
     }
