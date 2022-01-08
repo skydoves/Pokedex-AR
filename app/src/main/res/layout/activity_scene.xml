@@ -48,7 +48,7 @@
 
     <variable
       name="vm"
-      type="com.skydoves.pokedexar.ui.scene.SceneViewModel" />
+      type="com.skydoves.pokedexar.ui.home.HomeViewModel" />
   </data>
 
 </layout>

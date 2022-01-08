@@ -85,10 +85,6 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
     if (session.allAnchors.isEmpty()) {
       val pose = Pose(floatArrayOf(0f, 0f, -1f), floatArrayOf(0f, 0f, 0f, 1f))
       session.createAnchor(pose).apply {
-        val garden = PokemonModels.getGarden()
-        ModelRenderer.renderObject(this@DetailActivity, garden) { renderable ->
-          ModelRenderer.addGardenOnScene(arFragment, this, renderable, garden)
-        }
 
         val pokemon = PokemonModels.getPokemonByName(this@DetailActivity.pokemon.name)
           .copy(localPosition = DEFAULT_POSITION_DETAILS_POKEMON)

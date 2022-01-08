@@ -48,64 +48,53 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/recyclerView"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:clipToPadding="false"
-      android:fadeScrollbars="false"
-      android:padding="6dp"
-      android:scrollbarStyle="outsideOverlay"
-      android:scrollbarThumbVertical="@drawable/scrollbar"
-      android:scrollbars="vertical"
-      app:adapter="@{adapter}"
-      app:adapterPokemonList="@{vm.pokemonList}"
-      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-      app:spanCount="2"
-      app:toast="@{vm.errorMessage}"
-      tools:listitem="@layout/item_pokemon" />
 
-    <TextView
-      android:id="@+id/placeholder"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:text="@string/placeholder_empty_pokemon"
-      android:textColor="@color/white"
-      android:textSize="18sp"
-      app:gone="@{!vm.pokemonList.empty}"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:visibility="gone" />
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
 
-    <ProgressBar
-      android:id="@+id/progressbar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:indeterminateTint="@color/colorPrimary"
-      app:gone="@{!vm.loading}"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      <Button
+          android:textColor="@color/white"
+          android:text="Home"
+          android:layout_weight="1"
+          android:id="@+id/Home_btn"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:contentDescription="@string/app_name"
+          android:src="@drawable/pokeball"
+          app:backgroundTint="@color/colorPrimary"
+          app:fabSize="normal"
+          app:tint="@color/white" />
+      <Button
+          android:textColor="@color/white"
+          android:text="Battle"
+          android:layout_weight="1"
+          android:id="@+id/Battle_btn"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:contentDescription="@string/app_name"
+          android:src="@drawable/pokeball"
+          app:backgroundTint="@color/colorPrimary"
+          app:fabSize="normal"
+          app:tint="@color/white" />
+      <Button
+          android:textColor="@color/white"
+          android:text="Shop"
+          android:layout_weight="1"
+          android:id="@+id/Shop_btn"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:contentDescription="@string/app_name"
+          android:src="@drawable/pokeball"
+          app:backgroundTint="@color/colorPrimary"
+          app:fabSize="normal"
+          app:tint="@color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floating"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="36dp"
-      android:contentDescription="@string/app_name"
-      android:src="@drawable/pokeball"
-      app:backgroundTint="@color/colorPrimary"
-      app:fabSize="normal"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:tint="@color/white" />
+    </LinearLayout>
+
+
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

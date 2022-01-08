@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="Choose Pokemon"/>
+
+    <GridView
+        android:layout_margin="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:columnWidth="100dp"
+        android:numColumns="6"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:text="delete"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:text="cancel"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</LinearLayout>

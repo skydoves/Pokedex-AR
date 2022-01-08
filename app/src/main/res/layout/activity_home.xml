@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/text_home"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:layout_gravity="center"
+          android:text="Pokemon Box"
+          android:textSize="20sp" />
+
+      <GridView
+          android:layout_margin="10dp"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@+id/gridView"
+          android:layout_width="match_parent"
+          android:layout_height="300dp"
+          android:columnWidth="100dp"
+          android:numColumns="6">
+      </GridView>
+
+      <RelativeLayout
+          android:id="@+id/pokemon1"
+          android:layout_marginTop="10dp"
+          android:layout_marginHorizontal="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+        <TextView
+            android:textSize="20dp"
+            android:id="@+id/pokemon1_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"/>
+
+        <ImageView
+            android:id="@+id/pokemon1_img"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pokemon01" />
+      </RelativeLayout>
+      <RelativeLayout
+          android:id="@+id/pokemon2"
+          android:layout_marginTop="10dp"
+          android:layout_marginHorizontal="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+        <TextView
+            android:textSize="20dp"
+            android:id="@+id/pokemon2_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"/>
+
+        <ImageView
+            android:id="@+id/pokemon2_img"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/pokemon01" />
+      </RelativeLayout>
+      <RelativeLayout
+          android:id="@+id/pokemon3"
+          android:layout_marginTop="10dp"
+          android:layout_marginHorizontal="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/pokemon3_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/pokemon3_img"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/pokemon01" />
+      </RelativeLayout>
+      <RelativeLayout
+          android:id="@+id/pokemon4"
+          android:layout_marginTop="10dp"
+          android:layout_marginHorizontal="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+        <TextView
+            android:textSize="20dp"
+            android:id="@+id/pokemon4_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"/>
+
+        <ImageView
+            android:id="@+id/pokemon4_img"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/pokemon01" />
+      </RelativeLayout>
+
+    </LinearLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <data>
+
+    <variable
+      name="vm"
+      type="com.skydoves.pokedexar.ui.home.HomeViewModel" />
+  </data>
+
+</layout>

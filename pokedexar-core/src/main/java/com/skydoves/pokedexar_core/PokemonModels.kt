@@ -163,5 +163,9 @@ object PokemonModels {
 
   val DEFAULT_POSITION_DETAILS_POKEMON = Vector3(0f, -0.88f, -2f)
 
+  val DEFAULT_POSITION_DETAILS_POKEMON1 = Vector3(-0.5f, -1f, -5f)
+
+  val DEFAULT_POSITION_DETAILS_POKEMON2 = Vector3(0.5f, -1f, -2.5f)
+
   val DEFAULT_POSITION_POKE_BALL = Vector3(0f, -0.5f, 0.5f)
 }

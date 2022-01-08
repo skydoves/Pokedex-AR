@@ -45,9 +45,19 @@
       android:theme="@style/Theme.PokedexAR.NoActionBar" />
 
     <activity
-      android:name=".ui.scene.SceneActivity"
+      android:name=".ui.home.HomeActivity"
       android:launchMode="singleTop"
       android:theme="@style/Theme.PokedexAR.NoActionBar" />
+
+    <activity
+        android:name=".ui.shop.ShopActivity"
+        android:launchMode="singleTop"
+        android:theme="@style/Theme.PokedexAR.NoActionBar" />
+
+    <activity
+        android:name=".ui.scene.SceneActivity"
+        android:launchMode="singleTop"
+        android:theme="@style/Theme.PokedexAR.NoActionBar" />
 
     <meta-data
       android:name="com.google.ar.core"

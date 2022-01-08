@@ -29,6 +29,7 @@ import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
 import com.skydoves.pokedexar.extensions.findFragmentAs
+import com.skydoves.pokedexar.ui.home.HomeViewModel
 import com.skydoves.pokedexar_core.ModelRenderer
 import com.skydoves.pokedexar_core.PokemonModels
 import com.skydoves.whatif.whatIfNotNull
@@ -37,7 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_scene) {
 
-  private val viewModel by viewModels<SceneViewModel>()
+  private val viewModel by viewModels<HomeViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     applyFullScreenWindow()
@@ -71,17 +72,17 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
     if (session.allAnchors.isEmpty() && !viewModel.isCaught) {
       val pose = Pose(floatArrayOf(0f, 0f, -1f), floatArrayOf(0f, 0f, 0f, 1f))
       session.createAnchor(pose).apply {
-        val pokemon = PokemonModels.getRandomPokemon()
-        ModelRenderer.renderObject(this@SceneActivity, pokemon) { renderable ->
-          ModelRenderer.addPokemonOnScene(arFragment, this, renderable, pokemon)
+        val pokemon1 = PokemonModels.getRandomPokemon().copy(localPosition = PokemonModels.DEFAULT_POSITION_DETAILS_POKEMON1)
+        ModelRenderer.renderObject(this@SceneActivity, pokemon1) { renderable ->
+          ModelRenderer.addPokemonOnScene(arFragment, this, renderable, pokemon1)
         }
 
-        val pokeBall = PokemonModels.getPokeball()
-        ModelRenderer.renderObject(this@SceneActivity, pokeBall) { renderable ->
-          ModelRenderer.addPokeBallOnScene(arFragment, this, this, renderable, pokeBall, pokemon) {
-            viewModel.insertPokemonModel(pokemon)
-          }
+        val pokemon2 = PokemonModels.getRandomPokemon().copy(localPosition = PokemonModels.DEFAULT_POSITION_DETAILS_POKEMON2)
+        ModelRenderer.renderObject(this@SceneActivity, pokemon2) { renderable ->
+          ModelRenderer.addPokemonOnScene(arFragment, this, renderable, pokemon2)
         }
+
+
       }
     }
   }
