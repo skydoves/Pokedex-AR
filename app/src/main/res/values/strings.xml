@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 <resources>
-  <string name="app_name">PokedexAR</string>
+  <string name="app_name">Pokemon RealGO</string>
   <string name="gotcha">Gotcha! 🎉</string>
   <string name="placeholder_empty_pokemon">There is no pokemon that has been caught.</string>
   <string name="pokemon_name">%s (%s)</string>
