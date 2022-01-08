@@ -17,16 +17,6 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.skydoves.pokedexar">
 
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.CAMERA" />
-
-  <uses-feature
-    android:glEsVersion="0x00030000"
-    android:required="true" />
-  <uses-feature
-    android:name="android.hardware.camera.ar"
-    android:required="true" />
-
   <application
     android:name=".PokedexARApp"
     android:allowBackup="false"
@@ -39,6 +29,7 @@
 
     <activity
       android:name=".ui.main.MainActivity"
+      android:exported="true"
       android:launchMode="singleTop"
       android:screenOrientation="portrait">
       <intent-filter>
@@ -72,5 +63,15 @@
         android:value="androidx.startup" />
     </provider>
   </application>
+  <uses-feature
+    android:name="android.hardware.camera.ar"
+    android:required="true" />
+
+  <uses-feature
+    android:glEsVersion="0x00030000"
+    android:required="true" />
+  <uses-permission android:name="android.permission.CAMERA" />
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

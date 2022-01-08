@@ -17,17 +17,19 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
-
-    <variable
-      name="vm"
-      type="com.skydoves.pokedexar.ui.scene.SceneViewModel" />
-  </data>
-
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
+
+    <View
+      android:id="@+id/bindingView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:bindShowingBalloon="@{vm.pokemon}"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:toast="@{vm.errorMessage}" />
 
     <fragment
       android:id="@+id/arFragment"
@@ -40,15 +42,13 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:ignore="FragmentTagUsage" />
 
-    <View
-      android:id="@+id/bindingView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:bindShowingBalloon="@{vm.pokemonListLiveData}"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:toast="@{vm.errorMessage}" />
-
   </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <data>
+
+    <variable
+      name="vm"
+      type="com.skydoves.pokedexar.ui.scene.SceneViewModel" />
+  </data>
 
 </layout>

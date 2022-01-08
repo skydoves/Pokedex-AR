@@ -20,9 +20,9 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.skydoves.pokedexar.base.LiveCoroutinesViewModel
 import com.skydoves.pokedexar.model.PokemonInfo
 import com.skydoves.pokedexar.repository.DetailRepository
 import dagger.assisted.Assisted
@@ -32,7 +32,7 @@ import timber.log.Timber
 class DetailViewModel @AssistedInject constructor(
   detailRepository: DetailRepository,
   @Assisted private val pokemonName: String
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
   private val pokemonInfoFlow = detailRepository.fetchPokemonInfo(
     name = pokemonName,
@@ -66,7 +66,7 @@ class DetailViewModel @AssistedInject constructor(
       pokemonName: String
     ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
       @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+      override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return assistedFactory.create(pokemonName) as T
       }
     }
