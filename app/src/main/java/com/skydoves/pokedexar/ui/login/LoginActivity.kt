@@ -27,15 +27,15 @@ class LoginActivity : AppCompatActivity() {
 
         EasySharedPreferenceConfig.initDefault(EasySharedPreferenceConfig.Builder().inputFileName("easy_preference").inputMode(Context.MODE_PRIVATE).build())
 
+        if(EasySharedPreference.Companion.getString("token", "") != "") {
+            intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
-        //val okHttpClient = OkHttpClient.Builder().cookieJar(JavaNetCookieJar(CookieManager())).build()
         val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(LoginService::class.java)
-
-        //val idEditText = findViewById<EditText>(R.id.id)
-        //val pwEditText = findViewById<EditText>(R.id.password)
-
 
         findViewById<Button>(R.id.login_button).setOnClickListener {
 
@@ -67,9 +67,6 @@ class LoginActivity : AppCompatActivity() {
 
                             EasySharedPreference.Companion.putString("token", token)
 
-
-
-
                             intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent)
                             loading.dismiss()
@@ -82,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
             }
-
             dialog.show()
         }
     }

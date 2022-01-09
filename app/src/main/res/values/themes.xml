@@ -20,6 +20,7 @@
     <item name="colorOnPrimary">@color/colorPrimary</item>
     <item name="colorOnBackground">@color/white_87</item>
     <item name="android:textColorPrimary">@color/black_70</item>
+    <item name="actionMenuTextColor">@color/white</item>
     <item name="colorControlHighlight">@color/colorPrimary</item>
     <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
   </style>
