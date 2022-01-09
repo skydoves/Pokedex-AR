@@ -51,7 +51,7 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
     Pokemon("aa", "뮤", "pokemon00"),
   )
 
-  lateinit var pokeboxAdapter : GVAdapter
+  lateinit var pokeboxAdapter : GVAdapter2
 
   var selected_pokemonList = arrayListOf<Pokemon>(
     Pokemon("aa", "피카츄", "pokemon01"),
@@ -63,6 +63,8 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
   override fun onCreate(savedInstanceState: Bundle?) {
     applyFullScreenWindow()
     super.onCreate(savedInstanceState)
+
+    pokeboxAdapter = GVAdapter2(this)
 
     val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
       .addConverterFactory(GsonConverterFactory.create()).build()
@@ -77,20 +79,18 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
           println("Hello I am Homeactivity~~")
           println(response.body())
           val arr:Array<BoxData> = response.body()!!
-          for(i in arr.indices){
-            println(arr[i].pokemon.name)
-          }
+          pokeboxAdapter.boxList = arr
+          pokeboxAdapter.notifyDataSetChanged()
         }
       }
     )
 
-    pokeboxAdapter = GVAdapter(this, boxpokemonList)
+    //pokeboxAdapter = GVAdapter(this, boxpokemonList)
 
     val gridView = findViewById<GridView>(R.id.gridView)
     gridView.adapter = pokeboxAdapter
 
     showSelectedPokemon(selected_pokemonList)
-
 
   }
 
