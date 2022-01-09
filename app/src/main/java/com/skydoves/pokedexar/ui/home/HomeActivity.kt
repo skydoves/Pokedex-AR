@@ -17,6 +17,7 @@ import com.skydoves.bundler.intentOf
 import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.database.BoxData
 import com.skydoves.pokedexar.database.BoxListService
+import com.skydoves.pokedexar.database.DataIO
 import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
 import com.skydoves.pokedexar.ui.login.Login
@@ -80,6 +81,39 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
           println(response.body())
           val arr:Array<BoxData> = response.body()!!
           pokeboxAdapter.boxList = arr
+          pokeboxAdapter.setOnLongItemClickListener(
+            object : GVAdapter2.OnLongItemClickListener{
+              override fun onLongItemClick(v: View?, pos: Int) {
+                val box = pokeboxAdapter.boxList[pos]
+                val dialog = Dialog(this@HomeActivity)
+                dialog.setContentView(R.layout.dialog_detail_example)
+                dialog.findViewById<TextView>(R.id.detail_name).text = box.pokemon.name
+
+                dialog.findViewById<TextView>(R.id.detail_type1).text = box.pokemon.type1.name
+                dialog.findViewById<TextView>(R.id.detail_type2).text = box.pokemon.type2.name
+
+                dialog.findViewById<TextView>(R.id.detail_atk).text = box.pokemon.atk.toString()
+                dialog.findViewById<TextView>(R.id.detail_def).text = box.pokemon.dfs.toString()
+                dialog.findViewById<TextView>(R.id.detail_stk).text = box.pokemon.stk.toString()
+                dialog.findViewById<TextView>(R.id.detail_sef).text = box.pokemon.sef.toString()
+                dialog.findViewById<TextView>(R.id.detail_spd).text = box.pokemon.spd.toString()
+                dialog.findViewById<TextView>(R.id.detail_hp).text = box.pokemon.hp.toString()
+
+                dialog.findViewById<TextView>(R.id.detail_skill1).text = box.skill1.name
+                dialog.findViewById<TextView>(R.id.detail_skill2).text = box.skill2.name
+                dialog.findViewById<TextView>(R.id.detail_skill3).text = box.skill3.name
+                dialog.findViewById<TextView>(R.id.detail_skill4).text = box.skill4.name
+
+                dialog.findViewById<Button>(R.id.release_button).setOnClickListener {
+                  DataIO.deleteBoxAndDo(box.id){
+                    dialog.dismiss()
+                  }
+                }
+
+                dialog.show()
+              }
+            }
+          )
           pokeboxAdapter.notifyDataSetChanged()
         }
       }

@@ -10,4 +10,10 @@ interface BoxListService{
     fun requestBoxList(
         @Header("Authorization") token: String,
     ) : Call<Array<BoxData>>
+
+    @DELETE("/pokemon/api/box/{id}")
+    fun deleteBox(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ) : Call<String>
 }
