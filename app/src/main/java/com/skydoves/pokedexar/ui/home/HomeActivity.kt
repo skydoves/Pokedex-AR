@@ -87,6 +87,9 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
                 val box = pokeboxAdapter.boxList[pos]
                 val dialog = Dialog(this@HomeActivity)
                 dialog.setContentView(R.layout.dialog_detail_example)
+
+                val resourceId = resources.getIdentifier("pokemon${box.pokemon.id}", "drawable", packageName)
+                dialog.findViewById<ImageView>(R.id.detail_img).setImageResource(resourceId)
                 dialog.findViewById<TextView>(R.id.detail_name).text = box.pokemon.name
 
                 dialog.findViewById<TextView>(R.id.detail_type1).text = box.pokemon.type1.name
