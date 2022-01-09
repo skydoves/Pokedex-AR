@@ -2,6 +2,7 @@ package com.skydoves.pokedexar.ui.home
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -10,12 +11,24 @@ import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import com.amn.easysharedpreferences.EasySharedPreference
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedexar.R
+import com.skydoves.pokedexar.database.BoxData
+import com.skydoves.pokedexar.database.BoxListService
 import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
+import com.skydoves.pokedexar.ui.login.Login
+import com.skydoves.pokedexar.ui.login.LoginService
+import com.skydoves.pokedexar.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 @AndroidEntryPoint
 class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_home) {
@@ -50,6 +63,26 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
   override fun onCreate(savedInstanceState: Bundle?) {
     applyFullScreenWindow()
     super.onCreate(savedInstanceState)
+
+    val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
+      .addConverterFactory(GsonConverterFactory.create()).build()
+    val service = retrofit.create(BoxListService::class.java)
+    service.requestBoxList( "Token ${EasySharedPreference.Companion.getString("token", "noToken")}" ).enqueue(
+      object : Callback<Array<BoxData>> {
+        override fun onFailure(call: Call<Array<BoxData>>, t: Throwable) {
+
+        }
+
+        override fun onResponse(call: Call<Array<BoxData>>, response: Response<Array<BoxData>>) {
+          println("Hello I am Homeactivity~~")
+          println(response.body())
+          val arr:Array<BoxData> = response.body()!!
+          for(i in arr.indices){
+            println(arr[i].pokemon.name)
+          }
+        }
+      }
+    )
 
     pokeboxAdapter = GVAdapter(this, boxpokemonList)
 
@@ -149,8 +182,4 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
       }
     }
   }
-
-
-
-
 }
