@@ -28,7 +28,8 @@
       type="com.skydoves.pokedexar.ui.adapter.PokemonAdapter" />
   </data>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <LinearLayout
+      android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -47,6 +48,103 @@
         layout="@layout/toolbar_home" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:background="@color/background800"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+      <TextView
+          android:layout_weight="1"
+          android:layout_margin="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:textColor="@color/white"
+          android:text="이름 : 김수민"
+          android:textSize="20dp"/>
+
+      <TextView
+          android:layout_weight="1"
+          android:layout_margin="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:textColor="@color/white"
+          android:text="돈 : 999999$"
+          android:textSize="20dp"/>
+
+      <TextView
+          android:layout_weight="1"
+          android:layout_margin="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:textColor="@color/white"
+          android:text="전적 : 0승 0패"
+          android:textSize="20dp"/>
+
+      <TextView
+          android:layout_weight="1"
+          android:layout_margin="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:textColor="@color/white"
+          android:text="보유 포켓몬 : 8마리"
+          android:textSize="20dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+      <ImageView
+          android:layout_weight="2"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:src="@drawable/trainer_red"/>
+      <LinearLayout
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/pokemon1_img"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/pokeball"/>
+        <ImageView
+            android:id="@+id/pokemon2_img"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/pokeball" />
+        <ImageView
+            android:id="@+id/pokemon3_img"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/pokeball"/>
+        <ImageView
+            android:id="@+id/pokemon4_img"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/pokeball"/>
+      </LinearLayout>
+
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -96,6 +194,6 @@
 
 
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  </LinearLayout>
 
 </layout>
