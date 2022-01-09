@@ -10,6 +10,7 @@ import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.ui.adapter.PokemonAdapter
 import com.skydoves.pokedexar.ui.details.DetailActivity
 import com.skydoves.pokedexar.ui.home.HomeActivity
+import com.skydoves.pokedexar.ui.room.SocketHandler
 import com.skydoves.pokedexar.ui.scene.SceneActivity
 import com.skydoves.pokedexar.ui.shop.ShopActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       ShopBtn.setOnClickListener {
         ShopActivity.startActivity(this@MainActivity)
       }
+
+      initSocket()
     }
+  }
+
+  fun initSocket() {
+    SocketHandler.setSocket()
+    SocketHandler.establishConnection()
   }
 }

@@ -18,29 +18,125 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
-
-    <View
-      android:id="@+id/bindingView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:bindShowingBalloon="@{vm.pokemon}"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:toast="@{vm.errorMessage}" />
-
-    <fragment
-      android:id="@+id/arFragment"
-      android:name="com.google.ar.sceneform.ux.ArFragment"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:ignore="FragmentTagUsage" />
+      tools:context=".ui.main.MainActivity">
+
+    <View
+        android:id="@+id/bindingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bindShowingBalloon="@{vm.pokemon}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toast="@{vm.errorMessage}" />
+
+    <fragment
+        android:id="@+id/arFragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="FragmentTagUsage" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+        app:layout_constraintStart_toStartOf="@+id/bindingView"
+        app:layout_constraintTop_toTopOf="@+id/bindingView">
+
+      <TextView
+          android:id="@+id/battle_text_name_me"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="POKEMON1"
+          android:textSize="30dp"
+          app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+          app:layout_constraintStart_toStartOf="@+id/bindingView"
+          app:layout_constraintTop_toTopOf="@+id/bindingView" />
+
+      <TextView
+          android:id="@+id/battle_text_hp_me"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="HP1"
+          android:textSize="30dp"
+          app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+          app:layout_constraintStart_toStartOf="@+id/bindingView"
+          app:layout_constraintTop_toTopOf="@+id/bindingView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/bindingView"
+        app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+        app:layout_constraintTop_toTopOf="@+id/bindingView">
+      <TextView
+          android:id="@+id/battle_text_name_op"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="POKEMON2"
+          android:textSize="30dp"
+          app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+          app:layout_constraintStart_toStartOf="@+id/bindingView"
+          app:layout_constraintTop_toTopOf="@+id/bindingView" />
+
+      <TextView
+          android:id="@+id/battle_text_hp_op"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="HP2"
+          android:textSize="30dp"
+          app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+          app:layout_constraintEnd_toEndOf="@+id/bindingView"
+          app:layout_constraintTop_toTopOf="@+id/bindingView" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bindingView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+      <Button
+          android:id="@+id/battle_btn_skill_1"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:layout_weight="1" />
+
+      <Button
+          android:id="@+id/battle_btn_skill_2"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:layout_weight="1" />
+
+      <Button
+          android:id="@+id/battle_btn_skill_3"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:layout_weight="1" />
+
+      <Button
+          android:id="@+id/battle_btn_skill_4"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:layout_weight="1" />
+    </LinearLayout>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
