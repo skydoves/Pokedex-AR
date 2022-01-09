@@ -34,7 +34,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     dialog02 = Dialog(this)
 
-    //println("Hi Friends")
+
     //println(EasySharedPreference.Companion.getString("token", "noToken"))
 
     binding {
