@@ -110,8 +110,10 @@ dependencies {
     implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofitVersion"
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // moshi
     implementation "com.squareup.moshi:moshi-kotlin:$versions.moshiVersion"
@@ -144,6 +146,8 @@ dependencies {
 
     // debugging
     implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+
+    implementation 'com.github.AmanpreetYatin:Easy-SharedPreferences:0.1.1'
 
     implementation project(":pokedexar-core")
 }

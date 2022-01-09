@@ -3,6 +3,7 @@ package com.skydoves.pokedexar.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.amn.easysharedpreferences.EasySharedPreference
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.databinding.ActivityMainBinding
@@ -22,6 +23,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    //println("Hi Friends")
+    //println(EasySharedPreference.Companion.getString("token", "noToken"))
+
     binding {
       lifecycleOwner = this@MainActivity
       adapter = PokemonAdapter()

@@ -25,18 +25,28 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.PokedexAR"
-    tools:ignore="AllowBackup">
+    tools:ignore="AllowBackup"
+      android:usesCleartextTraffic="true">
+
+    <activity
+        android:name=".ui.login.LoginActivity"
+        android:exported="true"
+        android:launchMode="singleTop"
+        android:theme="@style/Theme.PokedexAR.NoActionBar">
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
 
     <activity
       android:name=".ui.main.MainActivity"
       android:exported="true"
       android:launchMode="singleTop"
       android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
 
     <activity
