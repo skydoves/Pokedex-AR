@@ -74,7 +74,25 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
 
       // init button interactions, hp, etc
       initializeUI()
+
+      testInit()
     }
+  }
+
+  private fun testInit() {
+    roomId = "test room"
+    myFighterId = "evilPokemon1"
+    opFighterId = "evilPokemon1"
+
+    val obj = JSONObject()
+    obj.put("id", mSocket.id())
+    obj.put("roomId", roomId)
+    val player: String = assets.open("testPlayer.json").bufferedReader().use { it.readText() }
+    obj.put("player", player)
+
+    roomId = "test room"
+
+    mSocket.emit("join", obj)
   }
 
   private fun initializeModels(arFragment: ArFragment, session: Session) {
@@ -94,21 +112,34 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
     }
   }
 
+
   private fun initializeUI() {
     mSocket = SocketHandler.getSocket()
     mSocket.on("battle_result", onBattleResult)
 
     binding.battleBtnSkill1.setOnClickListener {
-      mSocket.emit("skill", 0)
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 0)
+      mSocket.emit("skill", obj)
     }
     binding.battleBtnSkill2.setOnClickListener {
-      mSocket.emit("skill", 1)
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 1)
+      mSocket.emit("skill", obj)
     }
     binding.battleBtnSkill3.setOnClickListener {
-      mSocket.emit("skill", 2)
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 2)
+      mSocket.emit("skill", obj)
     }
     binding.battleBtnSkill4.setOnClickListener {
-      mSocket.emit("skill", 3)
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 3)
+      mSocket.emit("skill", obj)
     }
   }
 
@@ -121,8 +152,7 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
       override fun run() {
         runOnUiThread(Runnable {
           kotlin.run {
-
-//            binding.battleTextHpMe.setText(obj.get("").toString())
+            updatePokemon(obj)
           }
         })
       }
@@ -137,11 +167,12 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
     }
   }
 
+  lateinit var roomId: String;
   lateinit var myFighterId: String;
-  lateinit var myFighterName: String;
+//  var myFighterName: String;
   var myFighterHp: Double = 0.0;
   lateinit var opFighterId: String;
-  lateinit var opFighterName: String;
+//  var opFighterName: String;
   var opFighterHp: Double = 0.0;
 
   fun updatePokemon(resultObj : JSONObject) {

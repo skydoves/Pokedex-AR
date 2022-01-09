@@ -36,9 +36,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       ShopBtn.setOnClickListener {
         ShopActivity.startActivity(this@MainActivity)
       }
-
-      initSocket()
     }
+
+    initSocket()
   }
 
   fun initSocket() {
