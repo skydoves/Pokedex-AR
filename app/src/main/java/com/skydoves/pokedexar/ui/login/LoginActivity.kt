@@ -56,12 +56,10 @@ class LoginActivity : AppCompatActivity() {
                 service.requestLogin(idEditText.text.toString(), passwordEditText.text.toString()).enqueue(object : Callback<Login> {
                     override fun onFailure(call: Call<Login>, t: Throwable) {
                         loading.dismiss()
-                        println("에러")
                     }
 
                     override fun onResponse(call: Call<Login>, response: Response<Login>) {
                         try {
-                            println("성공")
                             println(response.body().toString())
                             println(response.body()!!.token)
                             val token = response.body()!!.token

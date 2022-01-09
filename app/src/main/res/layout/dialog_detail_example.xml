@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"/>
+
+        <TextView
+            android:id="@+id/detail_type1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="타입1"/>
+
+        <TextView
+            android:id="@+id/detail_type2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="타입2"/>
+
+        <TextView
+            android:id="@+id/detail_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HP"/>
+        <TextView
+            android:id="@+id/detail_atk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATK"/>
+        <TextView
+            android:id="@+id/detail_def"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DEF"/>
+        <TextView
+            android:id="@+id/detail_stk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STK"/>
+        <TextView
+            android:id="@+id/detail_sef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEF"/>
+        <TextView
+            android:id="@+id/detail_spd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPD"/>
+        <TextView
+            android:id="@+id/detail_skill1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스킬1"/>
+        <TextView
+            android:id="@+id/detail_skill2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스킬2"/>
+        <TextView
+            android:id="@+id/detail_skill3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스킬3"/>
+        <TextView
+            android:id="@+id/detail_skill4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스킬4"/>
+
+        <Button
+            android:id="@+id/release_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="놓아주기"
+            android:textColor="@color/white"/>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
