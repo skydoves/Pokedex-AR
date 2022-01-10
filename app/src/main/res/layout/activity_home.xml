@@ -9,12 +9,14 @@
     tools:context=".ui.main.MainActivity">
 
     <LinearLayout
+        android:background="@color/background"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
       <TextView
+          android:textColor="@color/white"
           android:id="@+id/text_home"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -24,6 +26,7 @@
           android:textSize="20sp" />
 
       <GridView
+          android:background="@color/background800"
           android:layout_margin="10dp"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
@@ -41,12 +44,66 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_weight="1">
+
         <TextView
-            android:textSize="20dp"
             android:id="@+id/pokemon1_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"/>
+            android:text="@string/app_name"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/pokemon1_name"
+            android:layout_toLeftOf="@id/pokemon1_img"
+            android:layout_alignParentLeft="true">
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p1_s1"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p1_s2"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p1_s3"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p1_s4"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/pokemon1_img"
@@ -66,11 +123,64 @@
           android:layout_height="match_parent"
           android:layout_weight="1">
         <TextView
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:id="@+id/pokemon2_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/pokemon2_name"
+            android:layout_toLeftOf="@id/pokemon2_img"
+            android:layout_alignParentLeft="true">
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p2_s1"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p2_s2"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p2_s3"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p2_s4"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/pokemon2_img"
@@ -89,11 +199,64 @@
           android:layout_weight="1">
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/pokemon3_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/pokemon3_name"
+            android:layout_toLeftOf="@id/pokemon3_img"
+            android:layout_alignParentLeft="true">
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p3_s1"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p3_s2"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p3_s3"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p3_s4"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/pokemon3_img"
@@ -111,11 +274,64 @@
           android:layout_height="match_parent"
           android:layout_weight="1">
         <TextView
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:id="@+id/pokemon4_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/pokemon4_name"
+            android:layout_toLeftOf="@id/pokemon4_img"
+            android:layout_alignParentLeft="true">
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p4_s1"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p4_s2"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p4_s3"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+          <TextView
+              android:textColor="@color/white"
+              android:id="@+id/p4_s4"
+              android:padding="3dp"
+              android:gravity="center"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:text="몸통박치기"
+              android:textSize="12dp"/>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/pokemon4_img"

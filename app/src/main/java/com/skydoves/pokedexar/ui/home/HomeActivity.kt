@@ -170,9 +170,21 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
     val pokemon1 = selectedBoxList[0]
     val pokemon1_name = findViewById<TextView>(R.id.pokemon1_name)
     val pokemon1_img = findViewById<ImageView>(R.id.pokemon1_img)
+    val pokemon1_s1 = findViewById<TextView>(R.id.p1_s1)
+    val pokemon1_s2 = findViewById<TextView>(R.id.p1_s2)
+    val pokemon1_s3 = findViewById<TextView>(R.id.p1_s3)
+    val pokemon1_s4 = findViewById<TextView>(R.id.p1_s4)
     val resourceId1 = this.resources.getIdentifier("pokemon${pokemon1?.pokemon?.id ?:""}", "drawable", this.packageName)
     pokemon1_img.setImageResource(resourceId1)
     pokemon1_name.text = pokemon1?.pokemon?.name
+    pokemon1_s1.text = pokemon1?.skill1?.name
+    pokemon1_s2.text = pokemon1?.skill2?.name
+    pokemon1_s3.text = pokemon1?.skill3?.name
+    pokemon1_s4.text = pokemon1?.skill4?.name
+    pokemon1_s1.setBackgroundColor(getTypeColor(pokemon1!!.skill1.type.name))
+    pokemon1_s2.setBackgroundColor(getTypeColor(pokemon1!!.skill2.type.name))
+    pokemon1_s3.setBackgroundColor(getTypeColor(pokemon1!!.skill3.type.name))
+    pokemon1_s4.setBackgroundColor(getTypeColor(pokemon1!!.skill4.type.name))
     pokemon1_img.setOnLongClickListener {
       showDialog01(0)
       true
@@ -181,9 +193,21 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
     val pokemon2 = selectedBoxList[1]
     val pokemon2_name = findViewById<TextView>(R.id.pokemon2_name)
     val pokemon2_img = findViewById<ImageView>(R.id.pokemon2_img)
+    val pokemon2_s1 = findViewById<TextView>(R.id.p2_s1)
+    val pokemon2_s2 = findViewById<TextView>(R.id.p2_s2)
+    val pokemon2_s3 = findViewById<TextView>(R.id.p2_s3)
+    val pokemon2_s4 = findViewById<TextView>(R.id.p2_s4)
     val resourceId2 = this.resources.getIdentifier("pokemon${pokemon2?.pokemon?.id ?:""}", "drawable", this.packageName)
     pokemon2_img.setImageResource(resourceId2)
     pokemon2_name.text = pokemon2?.pokemon?.name
+    pokemon2_s1.text = pokemon2?.skill1?.name
+    pokemon2_s2.text = pokemon2?.skill2?.name
+    pokemon2_s3.text = pokemon2?.skill3?.name
+    pokemon2_s4.text = pokemon2?.skill4?.name
+    pokemon2_s1.setBackgroundColor(getTypeColor(pokemon2!!.skill1.type.name))
+    pokemon2_s2.setBackgroundColor(getTypeColor(pokemon2!!.skill2.type.name))
+    pokemon2_s3.setBackgroundColor(getTypeColor(pokemon2!!.skill3.type.name))
+    pokemon2_s4.setBackgroundColor(getTypeColor(pokemon2!!.skill4.type.name))
     pokemon2_img.setOnLongClickListener {
       showDialog01(1)
       true
@@ -192,9 +216,21 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
     val pokemon3 = selectedBoxList[2]
     val pokemon3_name = findViewById<TextView>(R.id.pokemon3_name)
     val pokemon3_img = findViewById<ImageView>(R.id.pokemon3_img)
+    val pokemon3_s1 = findViewById<TextView>(R.id.p3_s1)
+    val pokemon3_s2 = findViewById<TextView>(R.id.p3_s2)
+    val pokemon3_s3 = findViewById<TextView>(R.id.p3_s3)
+    val pokemon3_s4 = findViewById<TextView>(R.id.p3_s4)
     val resourceId3 = this.resources.getIdentifier("pokemon${pokemon3?.pokemon?.id ?:""}", "drawable", this.packageName)
     pokemon3_img.setImageResource(resourceId3)
     pokemon3_name.text = pokemon3?.pokemon?.name
+    pokemon3_s1.text = pokemon3?.skill1?.name
+    pokemon3_s2.text = pokemon3?.skill2?.name
+    pokemon3_s3.text = pokemon3?.skill3?.name
+    pokemon3_s4.text = pokemon3?.skill4?.name
+    pokemon3_s1.setBackgroundColor(getTypeColor(pokemon3!!.skill1.type.name))
+    pokemon3_s2.setBackgroundColor(getTypeColor(pokemon3!!.skill2.type.name))
+    pokemon3_s3.setBackgroundColor(getTypeColor(pokemon3!!.skill3.type.name))
+    pokemon3_s4.setBackgroundColor(getTypeColor(pokemon3!!.skill4.type.name))
     pokemon3_img.setOnLongClickListener {
       showDialog01(2)
       true
@@ -202,9 +238,21 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
     val pokemon4 = selectedBoxList[3]
     val pokemon4_name = findViewById<TextView>(R.id.pokemon4_name)
     val pokemon4_img = findViewById<ImageView>(R.id.pokemon4_img)
+    val pokemon4_s1 = findViewById<TextView>(R.id.p4_s1)
+    val pokemon4_s2 = findViewById<TextView>(R.id.p4_s2)
+    val pokemon4_s3 = findViewById<TextView>(R.id.p4_s3)
+    val pokemon4_s4 = findViewById<TextView>(R.id.p4_s4)
     val resourceId4 = this.resources.getIdentifier("pokemon${pokemon4?.pokemon?.id ?: ""}", "drawable", this.packageName)
     pokemon4_img.setImageResource(resourceId4)
     pokemon4_name.text = pokemon4?.pokemon?.name
+    pokemon4_s1.text = pokemon4?.skill1?.name
+    pokemon4_s2.text = pokemon4?.skill2?.name
+    pokemon4_s3.text = pokemon4?.skill3?.name
+    pokemon4_s4.text = pokemon4?.skill4?.name
+    pokemon4_s1.setBackgroundColor(getTypeColor(pokemon4!!.skill1.type.name))
+    pokemon4_s2.setBackgroundColor(getTypeColor(pokemon4!!.skill2.type.name))
+    pokemon4_s3.setBackgroundColor(getTypeColor(pokemon4!!.skill3.type.name))
+    pokemon4_s4.setBackgroundColor(getTypeColor(pokemon4!!.skill4.type.name))
     pokemon4_img.setOnLongClickListener {
       showDialog01(3)
       true
