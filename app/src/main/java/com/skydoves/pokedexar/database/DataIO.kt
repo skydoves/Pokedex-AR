@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.amn.easysharedpreferences.EasySharedPreference
 import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.ui.home.GVAdapter2
@@ -84,6 +85,49 @@ class DataIO {
                         try {
                             val user:UserData = response.body()!!
                             action(user)
+                        } catch(e:Exception){
+
+                        }
+                    }
+                }
+            )
+        }
+
+        fun updateUserAndDo(price:Int, action: (MSG) -> Unit){
+            val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
+                .addConverterFactory(GsonConverterFactory.create()).build()
+            val service = retrofit.create(UserService::class.java)
+            service.updateUser("Token ${EasySharedPreference.Companion.getString("token", "noToken")}", price).enqueue(
+                object : Callback<MSG> {
+                    override fun onFailure(call: Call<MSG>, t: Throwable) {
+
+                    }
+                    override fun onResponse(call: Call<MSG>, response: Response<MSG>) {
+                        try {
+                            val str:MSG = response.body()!!
+                            action(str)
+                        } catch(e:Exception){
+                            println(e.toString())
+                        }
+                    }
+                }
+            )
+        }
+
+        fun gachaAndDo(action: (BoxData) -> Unit){
+            val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
+                .addConverterFactory(GsonConverterFactory.create()).build()
+            val service = retrofit.create(GachaService::class.java)
+            service.requestBoxList( "Token ${EasySharedPreference.Companion.getString("token", "noToken")}" ).enqueue(
+                object : Callback<BoxData> {
+                    override fun onFailure(call: Call<BoxData>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<BoxData>, response: Response<BoxData>) {
+                        try {
+                            val tmp:BoxData = response.body()!!
+                            action(tmp)
                         } catch(e:Exception){
 
                         }

@@ -51,8 +51,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     // 아래처럼 사용하세요!
     DataIO.requestUserAndDo {
-
       findViewById<TextView>(R.id.main_name).text = "이름 : ${it.nickname}"
+      findViewById<TextView>(R.id.main_money).text = "돈 : ${it.money}$"
     }
 
     dialog02 = Dialog(this)

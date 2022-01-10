@@ -10,4 +10,11 @@ interface UserService{
     fun requestUser(
         @Header("Authorization") token: String,
     ) : Call<UserData>
+
+    @FormUrlEncoded
+    @PUT("/user/profile/")
+    fun updateUser(
+        @Header("Authorization") token: String,
+        @Field("price") price: Int,
+    ) : Call<MSG>
 }
