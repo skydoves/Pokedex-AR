@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="527dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -12,8 +12,9 @@
         <ImageView
             android:id="@+id/detail_img"
             android:src="@drawable/pokemon1"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -26,6 +27,7 @@
                 android:id="@+id/detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Pikachu"
                 android:textSize="25dp"
                 android:textStyle="bold"/>
@@ -40,6 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:text="타입1"
                     android:textSize="20dp"/>
@@ -49,49 +52,231 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:text="타입2"
                     android:textSize="20dp"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/detail_hp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HP"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="체력: "
+                    android:textSize="20dp"/>
 
-            <TextView
-                android:id="@+id/detail_atk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ATK"/>
-            <TextView
-                android:id="@+id/detail_def"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DEF"/>
-            <TextView
-                android:id="@+id/detail_stk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="STK"/>
-            <TextView
-                android:id="@+id/detail_sef"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEF"/>
-            <TextView
-                android:id="@+id/detail_spd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SPD"/>
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_hp"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="hp"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_hp"
+                    android:progressDrawable="@drawable/hp_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    android:max="160"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="공격: "
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_atk"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="atk"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_atk"
+                    android:progressDrawable="@drawable/atk_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    android:max="120"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="방어: "
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_def"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="def"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_def"
+                    android:progressDrawable="@drawable/def_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    android:max="120"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="특공: "
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_stk"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="stk"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_stk"
+                    android:progressDrawable="@drawable/stk_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    android:max="120"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="특방: "
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_sef"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="sef"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_sef"
+                    android:progressDrawable="@drawable/sef_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    android:max="120"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="속도: "
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/detail_spd"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:text="spd"
+                    android:textSize="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_spd"
+                    android:progressDrawable="@drawable/spd_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:max="120"
+                    android:progress="50"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/detail_skill1"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="스킬1"
@@ -99,7 +284,7 @@
                 <TextView
                     android:id="@+id/detail_skill2"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="스킬2"
@@ -107,7 +292,7 @@
                 <TextView
                     android:id="@+id/detail_skill3"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="스킬3"
@@ -115,7 +300,7 @@
                 <TextView
                     android:id="@+id/detail_skill4"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="스킬4"
@@ -129,14 +314,14 @@
                 <Button
                     android:id="@+id/release_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:text="놓아주기"
                     android:textColor="@color/white"/>
                 <Button
-                    android:id="@+id/close_btn"
+                    android:id="@+id/close_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:text="닫기"
                     android:textColor="@color/white"/>

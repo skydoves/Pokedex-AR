@@ -22,23 +22,23 @@ object PokemonUtils {
 
   fun getTypeColor(type: String): Int {
     return when (type) {
-      "fighting" -> R.color.fighting
-      "flying" -> R.color.flying
-      "poison" -> R.color.poison
-      "ground" -> R.color.ground
-      "rock" -> R.color.rock
-      "bug" -> R.color.bug
-      "ghost" -> R.color.ghost
-      "steel" -> R.color.steel
-      "fire" -> R.color.fire
-      "water" -> R.color.water
-      "grass" -> R.color.grass
-      "electric" -> R.color.electric
-      "psychic" -> R.color.psychic
-      "ice" -> R.color.ice
-      "dragon" -> R.color.dragon
-      "fairy" -> R.color.fairy
-      "dark" -> R.color.dark
+      "격투" -> R.color.fighting
+      "비행" -> R.color.flying
+      "독" -> R.color.poison
+      "땅" -> R.color.ground
+      "바위" -> R.color.rock
+      "벌레" -> R.color.bug
+      "고스트" -> R.color.ghost
+      "강철" -> R.color.steel
+      "불" -> R.color.fire
+      "물" -> R.color.water
+      "풀" -> R.color.grass
+      "전기" -> R.color.electric
+      "에스퍼" -> R.color.psychic
+      "얼음" -> R.color.ice
+      "드래곤" -> R.color.dragon
+      "페어리" -> R.color.fairy
+      "악" -> R.color.dark
       else -> R.color.gray_21
     }
   }
