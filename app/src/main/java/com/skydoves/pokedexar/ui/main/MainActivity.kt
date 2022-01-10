@@ -6,6 +6,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import android.app.Dialog
+import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.GridView
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +21,7 @@ import com.skydoves.pokedexar.databinding.ActivityMainBinding
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.ui.adapter.PokemonAdapter
 import com.skydoves.pokedexar.ui.details.DetailActivity
+import com.skydoves.pokedexar.ui.home.GVAdapter
 import com.skydoves.pokedexar.ui.home.HomeActivity
 import com.skydoves.pokedexar.ui.login.LoginActivity
 import com.skydoves.pokedexar.ui.scene.SceneActivity
@@ -28,12 +34,19 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   @VisibleForTesting
   val viewModel: MainViewModel by viewModels()
 
+  lateinit var dialog02 :Dialog
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    
     val mToolbar = findViewById<Toolbar>(R.id.main_toolbar)
     setSupportActionBar(mToolbar)
     getSupportActionBar()?.setDisplayShowTitleEnabled(false)
-    //println("Hi Friends")
+
+
+    dialog02 = Dialog(this)
+
+
     //println(EasySharedPreference.Companion.getString("token", "noToken"))
     binding {
       lifecycleOwner = this@MainActivity
@@ -43,7 +56,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         HomeActivity.startActivity(this@MainActivity)
       }
       BattleBtn.setOnClickListener {
-        SceneActivity.startActivity(this@MainActivity)
+        showDialog02()
       }
       ShopBtn.setOnClickListener {
         ShopActivity.startActivity(this@MainActivity)
@@ -69,5 +82,20 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       }
       else -> return true
     }
+  fun showDialog02(){
+    dialog02.setContentView(R.layout.battleroom_dialog)
+    dialog02.show()
+
+    val enter_btn = dialog02.findViewById<Button>(R.id.enter_btn)
+    enter_btn.setOnClickListener{
+      SceneActivity.startActivity(this@MainActivity)
+    }
+
+    val cancel_btn = dialog02.findViewById<Button>(R.id.cancel_btn)
+    cancel_btn.setOnClickListener {
+      dialog02.dismiss()
+    }
+
+
   }
 }
