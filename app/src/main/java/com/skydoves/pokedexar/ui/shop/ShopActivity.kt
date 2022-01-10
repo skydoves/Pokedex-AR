@@ -14,6 +14,7 @@ import com.skydoves.bundler.intentOf
 import com.skydoves.pokedexar.R
 import com.skydoves.pokedexar.database.BoxData
 import com.skydoves.pokedexar.database.BoxListService
+import com.skydoves.pokedexar.database.DataIO
 import com.skydoves.pokedexar.database.GachaService
 import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
@@ -37,22 +38,19 @@ class ShopActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sho
     val draw_btn = findViewById<Button>(R.id.draw_btn)
 
 
-
     draw_btn.setOnClickListener {
-      val retrofit = Retrofit.Builder().baseUrl("http://192.249.18.193:80")
-        .addConverterFactory(GsonConverterFactory.create()).build()
-      val service = retrofit.create(GachaService::class.java)
-      service.requestBoxList( "Token ${EasySharedPreference.Companion.getString("token", "noToken")}" ).enqueue(
-        object : Callback<BoxData> {
-          override fun onFailure(call: Call<BoxData>, t: Throwable) {
-
+      DataIO.updateUserAndDo(10000){
+        println(it)
+        println(it.message)
+        val msg = it.message
+        if(msg == "success"){
+          DataIO.gachaAndDo {
+            Toast.makeText(this@ShopActivity ,it.pokemon.name +"를 뽑았다!", Toast.LENGTH_SHORT).show()
           }
-
-          override fun onResponse(call: Call<BoxData>, response: Response<BoxData>) {
-            Toast.makeText(this@ShopActivity , response.body()?.pokemon?.name +"를 뽑았다!", Toast.LENGTH_SHORT).show()
-          }
+        } else {
+          Toast.makeText(this@ShopActivity ,"돈이 부족합니다", Toast.LENGTH_SHORT).show()
         }
-      )
+      }
 
     }
 
