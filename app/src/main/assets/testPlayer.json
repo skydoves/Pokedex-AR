@@ -1,8 +1,9 @@
 {
-  "id": "evilAndroid",
+  "id": "playerId",
   "pokemons": [
     {
-      "id": "evilPokemon1",
+      "id": "pokemonId",
+      "name": "pokemonName",
       "level": 1,
       "maxHp": 50,
       "type1": 0,
