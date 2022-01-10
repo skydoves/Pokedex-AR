@@ -1,11 +1,11 @@
 
 package com.skydoves.pokedexar.ui.shop
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import com.amn.easysharedpreferences.EasySharedPreference
 import com.google.android.filament.Box
@@ -35,8 +35,14 @@ class ShopActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sho
     applyFullScreenWindow()
     super.onCreate(savedInstanceState)
 
-    val draw_btn = findViewById<Button>(R.id.draw_btn)
+    val draw_btn = findViewById<ImageButton>(R.id.gacha1)
 
+    val shineEffect = findViewById<ImageView>(R.id.shine_effect)
+    ObjectAnimator.ofFloat(shineEffect, "rotation", 180f).apply{
+      duration = 3000
+      repeatCount = ValueAnimator.INFINITE
+      start()
+    }
 
     draw_btn.setOnClickListener {
       DataIO.updateUserAndDo(10000){
