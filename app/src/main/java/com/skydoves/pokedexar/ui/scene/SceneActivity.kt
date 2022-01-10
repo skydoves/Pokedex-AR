@@ -19,6 +19,7 @@ package com.skydoves.pokedexar.ui.scene
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.databinding.ViewDataBinding
 import com.google.ar.core.Pose
 import com.google.ar.core.Session
 import com.google.ar.core.TrackingState
@@ -30,15 +31,20 @@ import com.skydoves.pokedexar.databinding.ActivitySceneBinding
 import com.skydoves.pokedexar.extensions.applyFullScreenWindow
 import com.skydoves.pokedexar.extensions.findFragmentAs
 import com.skydoves.pokedexar.ui.home.HomeViewModel
+import com.skydoves.pokedexar.ui.room.SocketHandler
 import com.skydoves.pokedexar_core.ModelRenderer
 import com.skydoves.pokedexar_core.PokemonModels
 import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
+import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_scene) {
 
   private val viewModel by viewModels<HomeViewModel>()
+  private lateinit var mSocket : Socket
 
   override fun onCreate(savedInstanceState: Bundle?) {
     applyFullScreenWindow()
@@ -65,7 +71,28 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
           initializeModels(this, session)
         }
       }
+
+      // init button interactions, hp, etc
+      initializeUI()
+
+      testInit()
     }
+  }
+
+  private fun testInit() {
+    roomId = "test room"
+    myFighterId = "evilPokemon1"
+    opFighterId = "evilPokemon1"
+
+    val obj = JSONObject()
+    obj.put("id", mSocket.id())
+    obj.put("roomId", roomId)
+    val player: String = assets.open("testPlayer.json").bufferedReader().use { it.readText() }
+    obj.put("player", player)
+
+    roomId = "test room"
+
+    mSocket.emit("join", obj)
   }
 
   private fun initializeModels(arFragment: ArFragment, session: Session) {
@@ -81,10 +108,55 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
         ModelRenderer.renderObject(this@SceneActivity, pokemon2) { renderable ->
           ModelRenderer.addPokemonOnScene(arFragment, this, renderable, pokemon2)
         }
-
-
       }
     }
+  }
+
+
+  private fun initializeUI() {
+    mSocket = SocketHandler.getSocket()
+    mSocket.on("battle_result", onBattleResult)
+
+    binding.battleBtnSkill1.setOnClickListener {
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 0)
+      mSocket.emit("skill", obj)
+    }
+    binding.battleBtnSkill2.setOnClickListener {
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 1)
+      mSocket.emit("skill", obj)
+    }
+    binding.battleBtnSkill3.setOnClickListener {
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 2)
+      mSocket.emit("skill", obj)
+    }
+    binding.battleBtnSkill4.setOnClickListener {
+      val obj = JSONObject()
+      obj.put("roomId", roomId)
+      obj.put("skillIndex", 3)
+      mSocket.emit("skill", obj)
+    }
+  }
+
+  // Update UI after receive response
+  var onBattleResult = Emitter.Listener { args ->
+    val obj = JSONObject(args[0].toString())
+
+
+    Thread(object : Runnable{
+      override fun run() {
+        runOnUiThread(Runnable {
+          kotlin.run {
+            updatePokemon(obj)
+          }
+        })
+      }
+    }).start()
   }
 
   companion object {
@@ -93,5 +165,33 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
         startActivity(context)
       }
     }
+  }
+
+  lateinit var roomId: String;
+  lateinit var myFighterId: String;
+//  var myFighterName: String;
+  var myFighterHp: Double = 0.0;
+  lateinit var opFighterId: String;
+//  var opFighterName: String;
+  var opFighterHp: Double = 0.0;
+
+  fun updatePokemon(resultObj : JSONObject) {
+    val pok1 : JSONObject = resultObj.get("pokemon1") as JSONObject
+    val pok2 : JSONObject = resultObj.get("pokemon2") as JSONObject
+    val id1 = pok1.get("id")
+    val id2 = pok2.get("id")
+
+    // 내 포켓몬 찾기
+    if (id1 == myFighterId) {
+      myFighterHp = pok1.get("hp") as Double
+      opFighterHp = pok2.get("hp") as Double
+    } else {
+      myFighterHp = pok2.get("hp") as Double
+      opFighterHp = pok1.get("hp") as Double
+    }
+
+    binding.battleTextHpMe.setText(myFighterHp.toString())
+    binding.battleTextHpOp.setText(opFighterHp.toString())
+
   }
 }

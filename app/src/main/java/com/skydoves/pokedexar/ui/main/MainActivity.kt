@@ -23,6 +23,7 @@ import com.skydoves.pokedexar.ui.adapter.PokemonAdapter
 import com.skydoves.pokedexar.ui.details.DetailActivity
 import com.skydoves.pokedexar.ui.home.GVAdapter
 import com.skydoves.pokedexar.ui.home.HomeActivity
+import com.skydoves.pokedexar.ui.room.SocketHandler
 import com.skydoves.pokedexar.ui.login.LoginActivity
 import com.skydoves.pokedexar.ui.scene.SceneActivity
 import com.skydoves.pokedexar.ui.shop.ShopActivity
@@ -62,6 +63,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         ShopActivity.startActivity(this@MainActivity)
       }
     }
+
+    initSocket()
+  }
+
+  fun initSocket() {
+    SocketHandler.setSocket()
+    SocketHandler.establishConnection()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
