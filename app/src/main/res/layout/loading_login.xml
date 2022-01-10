@@ -23,7 +23,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그인 중..."
+            android:text="확인 중..."
             android:layout_margin="15dp"/>
     </LinearLayout>
 
