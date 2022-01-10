@@ -78,65 +78,73 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
 
             pokeboxAdapter.boxList = it
             pokeboxAdapter.setOnLongItemClickListener(
-              object : GVAdapter2.OnLongItemClickListener{
+              object : GVAdapter2.OnLongItemClickListener {
                 override fun onLongItemClick(v: View?, pos: Int) {
                   val box = pokeboxAdapter.boxList[pos]
-                val dialog = Dialog(this@HomeActivity)
-                dialog.setContentView(R.layout.dialog_detail_example)
+                  val dialog = Dialog(this@HomeActivity)
+                  dialog.setContentView(R.layout.dialog_detail_example)
 
-                val resourceId = resources.getIdentifier("pokemon${box.pokemon.id}", "drawable", packageName)
-                dialog.findViewById<ImageView>(R.id.detail_img).setImageResource(resourceId)
-                dialog.findViewById<TextView>(R.id.detail_name).text = box.pokemon.name
+                  val resourceId =
+                    resources.getIdentifier("pokemon${box.pokemon.id}", "drawable", packageName)
+                  dialog.findViewById<ImageView>(R.id.detail_img).setImageResource(resourceId)
+                  dialog.findViewById<TextView>(R.id.detail_name).text = box.pokemon.name
 
-                dialog.findViewById<TextView>(R.id.detail_type1).text = box.pokemon.type1.name
-                dialog.findViewById<TextView>(R.id.detail_type1).setBackgroundColor(getTypeColor(box.pokemon.type1.name))
-                Log.d("t1","${getTypeColor(box.pokemon.type1.name)}")
-                if (box.pokemon.type2.name == "None") {
-                  dialog.findViewById<TextView>(R.id.detail_type2).setVisibility(View.GONE)
-                }
-                dialog.findViewById<TextView>(R.id.detail_type2).text = box.pokemon.type2.name
-                dialog.findViewById<TextView>(R.id.detail_type2).setBackgroundColor(getTypeColor(box.pokemon.type2.name))
+                  dialog.findViewById<TextView>(R.id.detail_type1).text = box.pokemon.type1.name
+                  dialog.findViewById<TextView>(R.id.detail_type1)
+                    .setBackgroundColor(getTypeColor(box.pokemon.type1.name))
+                  Log.d("t1", "${getTypeColor(box.pokemon.type1.name)}")
+                  if (box.pokemon.type2.name == "None") {
+                    dialog.findViewById<TextView>(R.id.detail_type2).setVisibility(View.GONE)
+                  }
+                  dialog.findViewById<TextView>(R.id.detail_type2).text = box.pokemon.type2.name
+                  dialog.findViewById<TextView>(R.id.detail_type2)
+                    .setBackgroundColor(getTypeColor(box.pokemon.type2.name))
 
-                dialog.findViewById<TextView>(R.id.detail_atk).text = box.pokemon.atk.toString()
-                dialog.findViewById<TextView>(R.id.detail_def).text = box.pokemon.dfs.toString()
-                dialog.findViewById<TextView>(R.id.detail_stk).text = box.pokemon.stk.toString()
-                dialog.findViewById<TextView>(R.id.detail_sef).text = box.pokemon.sef.toString()
-                dialog.findViewById<TextView>(R.id.detail_spd).text = box.pokemon.spd.toString()
-                dialog.findViewById<TextView>(R.id.detail_hp).text = box.pokemon.hp.toString()
+                  dialog.findViewById<TextView>(R.id.detail_atk).text = box.pokemon.atk.toString()
+                  dialog.findViewById<TextView>(R.id.detail_def).text = box.pokemon.dfs.toString()
+                  dialog.findViewById<TextView>(R.id.detail_stk).text = box.pokemon.stk.toString()
+                  dialog.findViewById<TextView>(R.id.detail_sef).text = box.pokemon.sef.toString()
+                  dialog.findViewById<TextView>(R.id.detail_spd).text = box.pokemon.spd.toString()
+                  dialog.findViewById<TextView>(R.id.detail_hp).text = box.pokemon.hp.toString()
 
-                dialog.findViewById<ProgressBar>(R.id.progress_hp).progress = box.pokemon.hp
-                dialog.findViewById<ProgressBar>(R.id.progress_atk).progress = box.pokemon.atk
-                dialog.findViewById<ProgressBar>(R.id.progress_def).progress = box.pokemon.dfs
-                dialog.findViewById<ProgressBar>(R.id.progress_stk).progress = box.pokemon.stk
-                dialog.findViewById<ProgressBar>(R.id.progress_sef).progress = box.pokemon.sef
-                dialog.findViewById<ProgressBar>(R.id.progress_spd).progress = box.pokemon.spd
+                  dialog.findViewById<ProgressBar>(R.id.progress_hp).progress = box.pokemon.hp
+                  dialog.findViewById<ProgressBar>(R.id.progress_atk).progress = box.pokemon.atk
+                  dialog.findViewById<ProgressBar>(R.id.progress_def).progress = box.pokemon.dfs
+                  dialog.findViewById<ProgressBar>(R.id.progress_stk).progress = box.pokemon.stk
+                  dialog.findViewById<ProgressBar>(R.id.progress_sef).progress = box.pokemon.sef
+                  dialog.findViewById<ProgressBar>(R.id.progress_spd).progress = box.pokemon.spd
 
-                dialog.findViewById<TextView>(R.id.detail_skill1).text = box.skill1.name
-                dialog.findViewById<TextView>(R.id.detail_skill2).text = box.skill2.name
-                dialog.findViewById<TextView>(R.id.detail_skill3).text = box.skill3.name
-                dialog.findViewById<TextView>(R.id.detail_skill4).text = box.skill4.name
+                  dialog.findViewById<TextView>(R.id.detail_skill1).text = box.skill1.name
+                  dialog.findViewById<TextView>(R.id.detail_skill2).text = box.skill2.name
+                  dialog.findViewById<TextView>(R.id.detail_skill3).text = box.skill3.name
+                  dialog.findViewById<TextView>(R.id.detail_skill4).text = box.skill4.name
 
-                dialog.findViewById<TextView>(R.id.detail_skill1).setBackgroundColor(getTypeColor(box.skill1.type.name))
-                dialog.findViewById<TextView>(R.id.detail_skill2).setBackgroundColor(getTypeColor(box.skill2.type.name))
-                dialog.findViewById<TextView>(R.id.detail_skill3).setBackgroundColor(getTypeColor(box.skill3.type.name))
-                dialog.findViewById<TextView>(R.id.detail_skill4).setBackgroundColor(getTypeColor(box.skill4.type.name))
+                  dialog.findViewById<TextView>(R.id.detail_skill1)
+                    .setBackgroundColor(getTypeColor(box.skill1.type.name))
+                  dialog.findViewById<TextView>(R.id.detail_skill2)
+                    .setBackgroundColor(getTypeColor(box.skill2.type.name))
+                  dialog.findViewById<TextView>(R.id.detail_skill3)
+                    .setBackgroundColor(getTypeColor(box.skill3.type.name))
+                  dialog.findViewById<TextView>(R.id.detail_skill4)
+                    .setBackgroundColor(getTypeColor(box.skill4.type.name))
 
-                dialog.findViewById<Button>(R.id.release_button).setOnClickListener {
-                  DataIO.deleteBoxAndDo(box.id){
-                    finish() //인텐트 종료
-                    overridePendingTransition(0, 0) //인텐트 효과 없애기
-                    val intent = intent //인텐트
-                    startActivity(intent) //액티비티 열기
-                    overridePendingTransition(0, 0) //인텐트 효과 없애기
+                  dialog.findViewById<Button>(R.id.release_button).setOnClickListener {
+                    DataIO.deleteBoxAndDo(box.id) {
+                      finish() //인텐트 종료
+                      overridePendingTransition(0, 0) //인텐트 효과 없애기
+                      val intent = intent //인텐트
+                      startActivity(intent) //액티비티 열기
+                      overridePendingTransition(0, 0) //인텐트 효과 없애기
+                      dialog.dismiss()
+                    }
+                  }
+
+                  dialog.findViewById<Button>(R.id.close_button).setOnClickListener {
                     dialog.dismiss()
                   }
-                }
-                
-                dialog.findViewById<Button>(R.id.close_button).setOnClickListener {
-                  dialog.dismiss()
-                }
 
-                dialog.show()
+                  dialog.show()
+                }
               }
             )
 
