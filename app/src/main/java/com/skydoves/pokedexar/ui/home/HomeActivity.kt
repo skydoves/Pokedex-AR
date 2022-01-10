@@ -109,6 +109,11 @@ class HomeActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_hom
 
                 dialog.findViewById<Button>(R.id.release_button).setOnClickListener {
                   DataIO.deleteBoxAndDo(box.id){
+                    finish() //인텐트 종료
+                    overridePendingTransition(0, 0) //인텐트 효과 없애기
+                    val intent = intent //인텐트
+                    startActivity(intent) //액티비티 열기
+                    overridePendingTransition(0, 0) //인텐트 효과 없애기
                     dialog.dismiss()
                   }
                 }

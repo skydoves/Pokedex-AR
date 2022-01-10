@@ -19,7 +19,7 @@
         android:gravity="center"
         android:layout_margin="15dp">
         <TextView
-            android:id="@+id/login_error_message"
+            android:id="@+id/signup_error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FF0000"
@@ -33,16 +33,38 @@
             android:hint="아이디" />
 
         <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="이름" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="이메일" />
+
+        <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="비밀번호" />
+
+        <EditText
+            android:id="@+id/passwordEditText_repeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="비밀번호 확인" />
+
         <Button
-            android:id="@+id/real_login_button"
+            android:id="@+id/real_signup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그인"
+            android:text="회원가입"
             android:textColor="@color/white"/>
 
     </LinearLayout>
