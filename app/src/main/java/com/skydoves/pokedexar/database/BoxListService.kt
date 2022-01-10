@@ -16,4 +16,12 @@ interface BoxListService{
         @Header("Authorization") token: String,
         @Path("id") id: Int,
     ) : Call<String>
+
+    @FormUrlEncoded
+    @PUT("/pokemon/api/box/{id}")
+    fun updateBox(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Field("select") select: Int,
+    ) : Call<String>
 }

@@ -7,7 +7,8 @@ class BoxData (
     var skill1: SkillData,
     var skill2: SkillData,
     var skill3: SkillData,
-    var skill4: SkillData
+    var skill4: SkillData,
+    var selected: Int
 ){
 
 }
