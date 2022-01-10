@@ -94,11 +94,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   }
 
   var onBattleStart = Emitter.Listener { args ->
-//    val obj = JSONObject(args[0].toString())
-
+    val obj = JSONObject(args[0].toString())
     // Enter SceneActivity (AR)
     EasySharedPreference.Companion.putString("roomId", mRoomId)
     EasySharedPreference.Companion.putString("myId", mMyId)
+    EasySharedPreference.Companion.putString("startObject", obj.toString())
     SceneActivity.startActivity(this@MainActivity)
   }
 

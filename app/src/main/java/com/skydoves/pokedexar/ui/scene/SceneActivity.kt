@@ -18,6 +18,7 @@ package com.skydoves.pokedexar.ui.scene
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import com.google.ar.core.Pose
@@ -57,6 +58,9 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
 
     roomId = EasySharedPreference.Companion.getString("roomId", "Default")
     myId = EasySharedPreference.Companion.getString("myId", "Default")
+    val startObj = JSONObject(EasySharedPreference.Companion.getString("startObject", "Default"))
+
+    updatePokemon(startObj.getJSONArray("fights"))
 
     with(findFragmentAs<ArFragment>(R.id.arFragment)) {
       planeDiscoveryController.hide()
@@ -99,6 +103,44 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
     }
   }
 
+  // Update UI after receive response
+  var onBattleResult = Emitter.Listener { args ->
+    val obj = JSONObject(args[0].toString())
+
+    val state = obj.getJSONObject("state")
+    val stateKey = state.getString("key")
+
+    if (stateKey == "default" || stateKey == "switch") {
+      Thread(object : Runnable{
+        override fun run() {
+          runOnUiThread(Runnable {
+            val fightsObj = obj.getJSONArray("fights")
+
+            kotlin.run {
+              if (stateKey == "switch") {
+                // 죽은 포켓몬과 다음 포켓몬 교체
+                for (i in 0 until fightsObj.length()) {
+                  var fo = fightsObj.getJSONObject(i)
+                  if (fo.getString("result") == "die") {
+                    fightsObj.put(i, state.getJSONObject("switch"))
+                  }
+                }
+              }
+
+              updatePokemon(fightsObj)
+
+              // set Timer
+//            obj.getInt("timer")
+            }
+          })
+        }
+      }).start()
+    } else if (stateKey == "end") {
+      // End Battle
+    } else {
+      // ...
+    }
+  }
 
   private fun initializeUI() {
     mSocket = SocketHandler.getSocket()
@@ -140,73 +182,50 @@ class SceneActivity : BindingActivity<ActivitySceneBinding>(R.layout.activity_sc
 
   lateinit var myId: String
   lateinit var roomId: String
-  lateinit var myFighterId: String
-//  var myFighterName: String
   var myFighterHp: Double = 0.0
-  lateinit var opFighterId: String
-//  var opFighterName: String
   var opFighterHp: Double = 0.0
 
-  // Update UI after receive response
-  var onBattleResult = Emitter.Listener { args ->
-    val obj = JSONObject(args[0].toString())
 
-    Thread(object : Runnable{
-      override fun run() {
-        runOnUiThread(Runnable {
-          kotlin.run {
-            updatePokemon(obj.getJSONArray("pokemons"))
-            // set Timer
-//            obj.getInt("timer")
-          }
-        })
-      }
-    }).start()
-  }
-
-  var onBattleStart = Emitter.Listener { args ->
-    val obj = JSONArray(args[0].toString())
-
-    Thread(object : Runnable{
-      override fun run() {
-        runOnUiThread(Runnable {
-          kotlin.run {
-            updatePokemon(obj)
-          }
-        })
-      }
-    }).start()
-  }
 
   /*[{ownerId: p.id,
   id: p.fighter.id,
   hp: p.fighter.hp,
   name: p.fighter.name}, ...]*/
   fun updatePokemon(resultObj : JSONArray) {
-    val pok1 : JSONObject = resultObj[0] as JSONObject
-    val pok2 : JSONObject = resultObj[1] as JSONObject
-    val id1 = pok1.get("ownerId")
-    val id2 = pok2.get("ownerId")
+    val fight1 = resultObj[0] as JSONObject
+    val fight2 = resultObj[1] as JSONObject
+    val id1 = fight1.get("ownerId")
+    val id2 = fight2.get("ownerId")
 
     var myFighterName: String = ""
     var opFighterName: String = ""
 
     // 내 포켓몬 찾기
     if (id1 == myId) {
-      myFighterName = pok1.getString("name")
-      opFighterName = pok2.getString("name")
-      myFighterHp = pok1.getDouble("hp")
-      opFighterHp = pok2.getDouble("hp")
+      myFighterName = fight1.getString("name")
+      opFighterName = fight2.getString("name")
+      myFighterHp = fight1.getDouble("hp")
+      opFighterHp = fight2.getDouble("hp")
+
+      var toastText = fight1.getString("effect")
+      if (toastText != "") {
+        Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+      }
     } else {
-      myFighterName = pok2.getString("name")
-      opFighterName = pok1.getString("name")
-      myFighterHp = pok2.getDouble("hp")
-      opFighterHp = pok1.getDouble("hp")
+      myFighterName = fight2.getString("name")
+      opFighterName = fight1.getString("name")
+      myFighterHp = fight2.getDouble("hp")
+      opFighterHp = fight1.getDouble("hp")
+
+      var toastText = fight2.getString("effect")
+      if (toastText != "") {
+        Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+      }
     }
 
     binding.battleTextNameMe.setText(myFighterName)
     binding.battleTextNameOp.setText(opFighterName)
-    binding.battleTextHpMe.setText(ceil(myFighterHp).toString())
-    binding.battleTextHpOp.setText(ceil(opFighterHp).toString())
+    binding.battleTextHpMe.setText(ceil(myFighterHp).toInt().toString())
+    binding.battleTextHpOp.setText(ceil(opFighterHp).toInt().toString())
   }
 }
