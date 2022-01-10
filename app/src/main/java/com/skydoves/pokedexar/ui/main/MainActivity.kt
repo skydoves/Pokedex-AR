@@ -11,12 +11,16 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.GridView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.Toolbar
 import com.amn.easysharedpreferences.EasySharedPreference
+import com.google.gson.Gson
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.pokedexar.R
+import com.skydoves.pokedexar.database.BoxData
+import com.skydoves.pokedexar.database.DataIO
 import com.skydoves.pokedexar.databinding.ActivityMainBinding
 import com.skydoves.pokedexar.model.Pokemon
 import com.skydoves.pokedexar.ui.adapter.PokemonAdapter
@@ -28,6 +32,7 @@ import com.skydoves.pokedexar.ui.login.LoginActivity
 import com.skydoves.pokedexar.ui.scene.SceneActivity
 import com.skydoves.pokedexar.ui.shop.ShopActivity
 import dagger.hilt.android.AndroidEntryPoint
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -44,6 +49,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     setSupportActionBar(mToolbar)
     getSupportActionBar()?.setDisplayShowTitleEnabled(false)
 
+    // 아래처럼 사용하세요!
+    DataIO.requestUserAndDo {
+
+      findViewById<TextView>(R.id.main_name).text = "이름 : ${it.nickname}"
+    }
 
     dialog02 = Dialog(this)
 
@@ -97,7 +107,17 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     val enter_btn = dialog02.findViewById<Button>(R.id.enter_btn)
     enter_btn.setOnClickListener{
-      SceneActivity.startActivity(this@MainActivity)
+      DataIO.requestUserAndDo {
+        val jsonObj = JSONObject()
+        val userId = it.nickname
+        jsonObj.put("id", userId.toString())
+        DataIO.requestSelectedBoxAndDo {
+          println( Gson().toJson(it) )
+
+          //SceneActivity.startActivity(this@MainActivity)
+        }
+      }
+
     }
 
     val cancel_btn = dialog02.findViewById<Button>(R.id.cancel_btn)
