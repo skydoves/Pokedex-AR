@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Enter BattleRoom Number"
+        android:textColor="@color/black"
+        android:textSize="23dp"
+        android:gravity="top|center"/>
+    <EditText
+        android:id="@+id/room_number"
+        android:padding="10dp"
+        android:inputType="number"
+        android:hint="BattleRoom Number"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/enter_btn"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Enter"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+</LinearLayout>
