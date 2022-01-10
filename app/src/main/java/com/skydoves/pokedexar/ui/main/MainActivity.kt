@@ -10,6 +10,7 @@ import android.app.Dialog
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.EditText
 import android.widget.GridView
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -33,6 +34,9 @@ import com.skydoves.pokedexar.ui.scene.SceneActivity
 import com.skydoves.pokedexar.ui.shop.ShopActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
+import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import org.json.JSONArray
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -57,6 +61,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     dialog02 = Dialog(this)
 
+    DataIO.requestUserAndDo {
+      mMyId = it.nickname
+    }
+
 
     //println(EasySharedPreference.Companion.getString("token", "noToken"))
     binding {
@@ -80,6 +88,18 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   fun initSocket() {
     SocketHandler.setSocket()
     SocketHandler.establishConnection()
+
+    val socket: Socket = SocketHandler.getSocket()
+    socket.on("battle_start", onBattleStart)
+  }
+
+  var onBattleStart = Emitter.Listener { args ->
+//    val obj = JSONObject(args[0].toString())
+
+    // Enter SceneActivity (AR)
+    EasySharedPreference.Companion.putString("roomId", mRoomId)
+    EasySharedPreference.Companion.putString("myId", mMyId)
+    SceneActivity.startActivity(this@MainActivity)
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -101,23 +121,35 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       else -> return true
     }
   }
+
+  lateinit var mRoomId: String
+  lateinit var mMyId: String
+
   fun showDialog02(){
     dialog02.setContentView(R.layout.battleroom_dialog)
     dialog02.show()
 
     val enter_btn = dialog02.findViewById<Button>(R.id.enter_btn)
     enter_btn.setOnClickListener{
-      DataIO.requestUserAndDo {
-        val jsonObj = JSONObject()
-        val userId = it.nickname
-        jsonObj.put("id", userId.toString())
-        DataIO.requestSelectedBoxAndDo {
-          println( Gson().toJson(it) )
+      val obj = JSONObject()
+      val playerObj = JSONObject()
 
-          //SceneActivity.startActivity(this@MainActivity)
+      DataIO.requestUserAndDo {
+        println(it)
+        playerObj.put("id", it.nickname.toString())
+        DataIO.requestSelectedBoxAndDo {
+          var jsonArray: JSONArray = JSONArray(Gson().toJson(it))
+          playerObj.put("pokemons", jsonArray)
+
+          val roomId: String = dialog02.findViewById<EditText>(R.id.room_number).text.toString()
+          mRoomId = roomId
+          obj.put("roomId", roomId)
+
+          obj.put("player", playerObj)
+
+          SocketHandler.getSocket().emit("room", obj)
         }
       }
-
     }
 
     val cancel_btn = dialog02.findViewById<Button>(R.id.cancel_btn)

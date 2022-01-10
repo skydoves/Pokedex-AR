@@ -13,7 +13,8 @@ object SocketHandler {
         try {
             // [무선 LAN 어댑터 Wi-Fi] - IPv4 주소
             // ERROR! Wifi ivp4 주소가 계속 바뀐다!!!!
-            val uri = URI.create("http://192.249.30.61:80")
+            val uri = URI.create("http://192.249.30.125:80") // Wifi
+//            val uri = URI.create("http://192.249.18.196:80") // KCloud
             val opt = IO.Options.builder().build()
             mSocket = IO.socket(uri, opt)
         } catch (e: URISyntaxException) {
