@@ -82,6 +82,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       }
       else -> return true
     }
+  }
   fun showDialog02(){
     dialog02.setContentView(R.layout.battleroom_dialog)
     dialog02.show()
